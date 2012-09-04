@@ -10,8 +10,8 @@ Phone: 801-361-5888
 
 Jeff Bean
 -----------
-Email:
-Phone:
+Email: jeffmbean@gmail.com
+Phone: 801-735-9373
 
 Sam Bryan
 ----------
