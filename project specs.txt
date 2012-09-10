@@ -1,0 +1,52 @@
+Original Estimate: More Information Needed
+
+
+Details:
+
+Back-end - Matt, Jeff
+	Tomcat (Java)
+	MySQL database
+	Web Service API (Android link-in)
+		Add expense
+		
+Front-end - Tim, Sam
+	HTML, CSS, JavaScript
+	
+Hosting - appfog.com, cloudfoundry.com, openshift
+
+Android - Branden, Jordan
+
+Automatic deposits
+	Every x day of the month, add $y to balance
+	
+Categories with History
+
+User login
+
+
+Questions:
+
+General
+	- Is it free?
+	- Do we send alerts when balance is low?
+	- Are we going to host a server?
+	- Any server requirements? Linux, Windows
+	- Do you want the app to hand off to someone to host?
+
+User login
+	- Username or email?
+	- Restrict special characters?
+	- Forgot password link?
+	- Session timeout?
+	
+Registration
+	- What information do we require?
+	- Complexity of password?
+	- Allow self-registration or require an admin to create a user?
+
+Budget categories
+	Pre-defined or allow user to create?
+		If user can create, is there a max number of categories?
+	How long of a history to show?
+	Filtering?
+	What information is included in the history?
