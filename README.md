@@ -60,6 +60,15 @@ Roadmap
 
 Task Assignment
 ---------------------
-* Deliverable 1 - Matt & Jeff
-* Deliverable 2 - Tim & Jordan  
-...
+
+* Back-end database design - 
+* User login/registration - 
+
+* CRUD for envelopes - 
+* CRUD for transactions (deposit & expense) - 
+
+* Transaction history (filtering, paging) - 
+* Shared budgets - 
+ 
+* Android - login - 
+* Android - add expense - 
