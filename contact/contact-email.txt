@@ -1,0 +1,78 @@
+Mrs Wright,
+
+We here on Team Apathy are excited for this opportunity to work on this project with you. We would like to get started right away, and therefore we wanted to touch base with you to make sure that we are on the same page in terms of expectations.
+
+First of all, we understand that we are making a web application for a personal/family budget and possibly a mobile phone application to work along with it.
+
+From what we know, there are several key components for this project:
+
+1) It is a Budget App
+Can you give us an overview of what you see for this project?
+
+2) There is a User Login
+Do you have any specific requirements for this?
+
+3) Android app to add expenses
+Is this all the the Android app needs to do ?
+
+4) Web app to add and view spending
+
+5)Categories with History
+Do you have specific categories you would like to see?
+
+6) Automatic "Deposits" 
+Can you please explain this a little more?
+
+That is our working list of features that we plan on including. If you would like to refine or add to the list, feel free to do so. We plan on communicating with you throughout the project to ensure that we are working with the same goals in mind.
+
+We anticipate your feedback and are anxious to get a better idea of what your expectations are.
+
+Thank you,
+
+Team Apathy
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+Team Apathy,
+
+Below I have answered the questions you have asked and included what I would like to see in this project.  Please let me know if something doesn't make sense or if you have anymore questions.  Thank you!  
+ 
+
+    1) It is a Budget App
+    Can you give us an overview of what you see for this project?
+
+
+What I would like to see in this application are the following:
+-I would like an application that you could log on to an account and set up your own budget.  It would be nice if multiple users could log into 1 account.  So when each one enters in an expense it will show who made that expense and entered it into the budget.  
+-It would be great to be able to add expenses you make when you make them.  For example you could log in online and/or on an android app and enter that you spent $50 at the gas station and add that under the category you want.  I would like it then to automatically subtract what you spent and show what you have left in your budget to spend.  So like this:
+Gas Budget $ 300       Spent  $150     Remaining  $150
+-It would be nice if you could click on the Spent part and be able to see who added expenses and when.  
+-
+
+
+    2) There is a User Login
+    Do you have any specific requirements for this?
+    -I believe I answered that above
+
+ 
+
+    3) Android app to add expenses
+    Is this all the the Android app needs to do ?
+    -Yes I would like to on the spot right after I shop be able to add the expense I just made from my phone to the account.  
+
+ 
+
+    4) Web app to add and view spending
+
+    5)Categories with History
+    Do you have specific categories you would like to see?
+
+   -I would like to make up my own budget and add as many categories as I would like according to my budget.   
+
+
+    6) Automatic "Deposits" 
+    Can you please explain this a little more?
+
+   -I don't need this with what I've decided I want 
