@@ -43,10 +43,12 @@ Roadmap
 ---------------------
 
 ### September
-* Back-end database design
-* User login/registration
+* Design overall page layout
+* User login page
+* User registration page
 
 ### October
+* Database design
 * CRUD for envelopes
 * CRUD for transactions (deposit & expense)
 
@@ -61,14 +63,16 @@ Roadmap
 Task Assignment
 ---------------------
 
-* Back-end database design - 
-* User login/registration - 
+* Design overall page layout - Matt & Sam
+* User login page - Jeff & Branden
+* User registration page - Tim & Jordan
 
-* CRUD for envelopes - 
-* CRUD for transactions (deposit & expense) - 
+* Database setup - Jeff & Matt
+* CRUD for envelopes - Sam & Jordan
+* CRUD for transactions (deposit & expense) - Tim & Branden
 
-* Transaction history (filtering, paging) - 
-* Shared budgets - 
+* Transaction history (filtering, paging) - Jeff & Jordan
+* Shared budgets - Matt & Tim
  
-* Android - login - 
-* Android - add expense - 
+* Android - login - Branden & Jeff
+* Android - add expense - Sam & Jordan
