@@ -43,19 +43,20 @@ Roadmap
 ---------------------
 
 ### September
-* Deliverable 1
-* Deliverable 2
+* Back-end database design
+* User login/registration
 
 ### October
-* Deliverable 3
-* Deliverable 4
+* CRUD for envelopes
+* CRUD for transactions (deposit & expense)
 
 ### November
-* Deliverable 5
-* Deliverable 6
+* Transaction history (filtering, paging)
+* Shared budgets
  
 ### December
-* Deliverable 7
+* Android - login
+* Android - add expense
 
 Task Assignment
 ---------------------
