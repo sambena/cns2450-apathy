@@ -1,0 +1,7 @@
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\obj\Debug\ResolveAssemblyReference.cache
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\Apathy.dll
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\Apathy.pdb
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\EntityFramework.dll
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\EntityFramework.xml
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\obj\Debug\Apathy.dll
+c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\obj\Debug\Apathy.pdb
