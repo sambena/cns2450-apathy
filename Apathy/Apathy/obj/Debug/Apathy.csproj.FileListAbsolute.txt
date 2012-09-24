@@ -5,3 +5,10 @@ c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\EntityFr
 c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\bin\EntityFramework.xml
 c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\obj\Debug\Apathy.dll
 c:\users\i63418\documents\visual studio 2010\Projects\Apathy\Apathy\obj\Debug\Apathy.pdb
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\bin\Apathy.dll
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\bin\Apathy.pdb
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.dll
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
+C:\Users\Gator2\Documents\School\CS 2450\apps\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
