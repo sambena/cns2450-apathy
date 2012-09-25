@@ -1,0 +1,27 @@
+Team Apathy
+============= 
+Retrospective – <Number> – <Date> 
+------------------------------------------------- 
+Previous Iteration Goals (Note, add two spaces at the end of a line to make a return for this). 
+* <Goal One>: <The description of how you felt the team did on the goal, if they completed it, if not, was it a good change, etc> 
+* <Goal Two>: <Dido> 
+Things you did wrong: 
+* <First Thing> - <Person who said it> 
+* <Second Thing> - <Person who said it> 
+* ... 
+Things you did right: 
+* <First Thing> - <Person who said it> 
+* ... 
+Goals for next Iteration: 
+* <Goal One> 
+* <Goal Two> 
+Stories from last iteration: 
+* <Story>: <Status> - <Person who worked on it> 
+* <Story>: <Status> - <Person who worked on it> 
+* ... 
+Stories for this iteration: 
+* <Story>: <Estimated Size> 
+User Interation: 
+<Paste any email or txt communication, and type up any phone conversations you may have had> 
+Email on <Email Date>: 
+This is the body of the email and this would be an email chain for the iteration or something. 
