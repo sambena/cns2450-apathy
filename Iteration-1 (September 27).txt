@@ -1,10 +1,7 @@
 Team Apathy
 ============= 
-Retrospective – <Number> – <Date> 
+Retrospective – 1 – 09-27-12
 ------------------------------------------------- 
-Previous Iteration Goals (Note, add two spaces at the end of a line to make a return for this). 
-* <Goal One>: <The description of how you felt the team did on the goal, if they completed it, if not, was it a good change, etc> 
-* <Goal Two>: <Dido> 
 Things you did wrong: 
 * <First Thing> - <Person who said it> 
 * <Second Thing> - <Person who said it> 
@@ -16,12 +13,13 @@ Goals for next Iteration:
 * <Goal One> 
 * <Goal Two> 
 Stories from last iteration: 
+* Set up hosting server: Completed - Matt Tolman 
+* Create registration page: Completed - <Person who worked on it> 
+* Create login page: Completed - <Person who worked on it> 
 * <Story>: <Status> - <Person who worked on it> 
-* <Story>: <Status> - <Person who worked on it> 
-* ... 
 Stories for this iteration: 
-* <Story>: <Estimated Size> 
-User Interation: 
-<Paste any email or txt communication, and type up any phone conversations you may have had> 
-Email on <Email Date>: 
-This is the body of the email and this would be an email chain for the iteration or something. 
+* Site structure: 7 
+* Design database schema: 2 
+* Add, Edit, Delete Envelopes: 4 
+User Interaction: 
+N/A 
