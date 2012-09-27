@@ -17,5 +17,15 @@ namespace Apathy.Controllers
         {
             return View();
         }
+
+        public ActionResult Envelope()
+        {
+            return View();
+        }
+
+        public ActionResult Transactions()
+        {
+            return View();
+        }
     }
 }
