@@ -1,0 +1,35 @@
+﻿@model Apathy.Models.Envelope
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Envelope</legend>
+
+    <div class="display-label">Budget</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Budget.Owner)
+    </div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">StartingBalance</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartingBalance)
+    </div>
+
+    <div class="display-label">CurrentBalance</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrentBalance)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EnvelopeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

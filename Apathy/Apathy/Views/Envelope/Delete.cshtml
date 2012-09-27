@@ -1,0 +1,38 @@
+﻿@model Apathy.Models.Envelope
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Envelope</legend>
+
+    <div class="display-label">Budget</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Budget.Owner)
+    </div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">StartingBalance</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartingBalance)
+    </div>
+
+    <div class="display-label">CurrentBalance</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrentBalance)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

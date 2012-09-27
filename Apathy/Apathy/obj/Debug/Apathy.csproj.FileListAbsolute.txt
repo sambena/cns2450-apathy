@@ -19,3 +19,10 @@ C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.x
 C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
 C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
 C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.dll
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.pdb
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.dll
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
+C:\Users\bmcdonald\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
