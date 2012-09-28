@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Apathy.Models.Envelope>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            BudgetID
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            StartingBalance
+        </th>
+        <th>
+            CurrentBalance
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BudgetID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartingBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentBalance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EnvelopeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EnvelopeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EnvelopeID })
+        </td>
+    </tr>
+}
+
+</table>
