@@ -19,8 +19,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
-                    <li>@Html.ActionLink("Envelopes", "Create", "Envelope")</li>
-                    <li>@Html.ActionLink("Transactions", "Transactions", "Home")</li>
+                    <li>@Html.ActionLink("Envelopes", "Index", "Envelope")</li>
+                    <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
                     }
                     <li>@Html.ActionLink("Register", "Register", "Account")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
