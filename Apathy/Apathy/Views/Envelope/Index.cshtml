@@ -26,7 +26,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Budget.Owner)
@@ -41,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.CurrentBalance)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EnvelopeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EnvelopeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EnvelopeID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.EnvelopeID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EnvelopeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID })
         </td>
     </tr>
 }
