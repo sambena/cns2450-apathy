@@ -40,3 +40,10 @@ C:\Users\Timmy\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework
 C:\Users\Timmy\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Timmy\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
 C:\Users\Timmy\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.dll
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.pdb
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.dll
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
+C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb

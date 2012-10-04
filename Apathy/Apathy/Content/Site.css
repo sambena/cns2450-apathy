@@ -4,7 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-color: #496c8e;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -46,7 +46,7 @@ section {
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
-    color: #000;
+    color: #496c8e;
 }
 
 h1 {
@@ -324,6 +324,9 @@ div#title {
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
+    font: Helvetica;
+    font-size:large;
+    color: #496c8e;
 }
 
 .display-field, 
