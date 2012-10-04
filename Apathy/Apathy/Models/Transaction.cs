@@ -8,6 +8,7 @@ namespace Apathy.Models
         [Key]
         public int TransactionID { get; set; }
 
+        [ForeignKey("Envelope")]
         public int EnvelopeID { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:c}")]
@@ -15,6 +16,7 @@ namespace Apathy.Models
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yy}")]
         public DateTime Date { get; set; }
 
         [MaxLength(50)]

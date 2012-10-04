@@ -10,22 +10,17 @@
 <fieldset>
     <legend>Envelope</legend>
 
-    <div class="display-label">Budget</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Budget.Owner)
-    </div>
-
-    <div class="display-label">Title</div>
+    <div class="display-label">@Html.LabelFor(model => model.Title)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Title)
     </div>
 
-    <div class="display-label">StartingBalance</div>
+    <div class="display-label">@Html.LabelFor(model => model.StartingBalance)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.StartingBalance)
     </div>
 
-    <div class="display-label">CurrentBalance</div>
+    <div class="display-label">@Html.LabelFor(model => model.CurrentBalance)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CurrentBalance)
     </div>

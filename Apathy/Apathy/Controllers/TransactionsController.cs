@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using Apathy.Models;
+using Apathy.DAL;
 
 namespace Apathy.Controllers
 { 
+    [Authorize]
     public class TransactionsController : Controller
     {
-        private BudgetContext db = new BudgetContext();
+        private UnitOfWork uow = new UnitOfWork();
 
         //
         // GET: /Transactions/
 
         public ViewResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Envelope);
-            return View(transactions.ToList());
+            return View(uow.TransactionRepository.GetUserTransactions(User.Identity.Name));
         }
 
         //
@@ -27,8 +28,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            return View(transaction);
+            return View(uow.TransactionRepository.GetById(id));
         }
 
         //
@@ -36,9 +36,9 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.EnvelopeID = new SelectList(db.Envelopes, "EnvelopeID", "Title");
+            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
             return View();
-        } 
+        }
 
         //
         // POST: /Transactions/Create
@@ -48,12 +48,12 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Transactions.Add(transaction);
-                db.SaveChanges();
+                uow.TransactionRepository.Add(transaction);
+                uow.Save();
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(db.Envelopes, "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
         
@@ -62,8 +62,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            ViewBag.EnvelopeID = new SelectList(db.Envelopes, "EnvelopeID", "Title", transaction.EnvelopeID);
+            Transaction transaction = uow.TransactionRepository.GetById(id);
+            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -75,11 +75,12 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(transaction).State = EntityState.Modified;
-                db.SaveChanges();
+                uow.TransactionRepository.Update(transaction);
+                uow.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.EnvelopeID = new SelectList(db.Envelopes, "EnvelopeID", "Title", transaction.EnvelopeID);
+
+            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -88,8 +89,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            return View(transaction);
+            return View(uow.TransactionRepository.GetById(id));
         }
 
         //
@@ -97,16 +97,15 @@ namespace Apathy.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
-            Transaction transaction = db.Transactions.Find(id);
-            db.Transactions.Remove(transaction);
-            db.SaveChanges();
+        {
+            uow.TransactionRepository.Remove(id);
+            uow.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            uow.Dispose();
             base.Dispose(disposing);
         }
     }

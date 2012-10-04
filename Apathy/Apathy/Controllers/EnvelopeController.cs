@@ -6,20 +6,28 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Apathy.Models;
+using Apathy.DAL;
+using Apathy.ViewModels;
 
 namespace Apathy.Controllers
 { 
+    [Authorize]
     public class EnvelopeController : Controller
     {
-        private BudgetContext db = new BudgetContext();
+        private UnitOfWork uow = new UnitOfWork();
 
         //
         // GET: /Envelope/
 
         public ViewResult Index()
         {
-            var envelopes = db.Envelopes.Include(e => e.Budget);
-            return View(envelopes.ToList());
+            EnvelopeIndexViewModel viewModel = new EnvelopeIndexViewModel
+            {
+                Envelopes = uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name),
+                RecentTransactions = uow.TransactionRepository.GetRecentTransactions(User.Identity.Name, 14, 5)
+            };
+
+            return View(viewModel);
         }
 
         //
@@ -27,8 +35,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            Envelope envelope = db.Envelopes.Find(id);
-            return View(envelope);
+            return View(uow.EnvelopeRepository.GetById(id));
         }
 
         //
@@ -36,9 +43,8 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "Owner");
             return View();
-        } 
+        }
 
         //
         // POST: /Envelope/Create
@@ -48,12 +54,12 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Envelopes.Add(envelope);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                envelope.BudgetID = uow.BudgetRepository.GetByOwner(User.Identity.Name).BudgetID;
+                uow.EnvelopeRepository.Add(envelope);
+                uow.Save();
+                return RedirectToAction("Index");
             }
 
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "Owner", envelope.BudgetID);
             return View(envelope);
         }
         
@@ -62,9 +68,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Envelope envelope = db.Envelopes.Find(id);
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "Owner", envelope.BudgetID);
-            return View(envelope);
+            return View(uow.EnvelopeRepository.GetById(id));
         }
 
         //
@@ -75,11 +79,10 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(envelope).State = EntityState.Modified;
-                db.SaveChanges();
+                uow.EnvelopeRepository.Update(envelope);
+                uow.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "Owner", envelope.BudgetID);
             return View(envelope);
         }
 
@@ -88,8 +91,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            Envelope envelope = db.Envelopes.Find(id);
-            return View(envelope);
+            return View(uow.EnvelopeRepository.GetById(id));
         }
 
         //
@@ -97,16 +99,15 @@ namespace Apathy.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
-            Envelope envelope = db.Envelopes.Find(id);
-            db.Envelopes.Remove(envelope);
-            db.SaveChanges();
+        {
+            uow.EnvelopeRepository.Remove(id);
+            uow.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            uow.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -1,10 +1,8 @@
-﻿@model IEnumerable<Apathy.Models.Envelope>
+﻿@model Apathy.ViewModels.EnvelopeIndexViewModel
 
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,26 +10,20 @@
 <table>
     <tr>
         <th>
-            Budget
+            Envelope
         </th>
         <th>
-            Title
+            Monthly Budget
         </th>
         <th>
-            StartingBalance
-        </th>
-        <th>
-            CurrentBalance
+            Current Amount
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model)
+@foreach (var item in Model.Envelopes)
 {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Budget.Owner)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -50,3 +42,21 @@
 }
 
 </table>
+
+<h2>Recent Transactions:</h2>
+
+<table>
+@foreach (var transaction in Model.RecentTransactions)
+{
+    <tr>
+        <td>@Html.DisplayFor(item => transaction.Date)</td>
+        <td>@Html.DisplayFor(item => transaction.Envelope.Title)</td>
+        <td>@Html.DisplayFor(item => transaction.Amount)</td>
+    </tr>
+}
+
+</table>
+
+<p>
+@Html.ActionLink("See All Transactions", "Index", "Transactions")
+</p>

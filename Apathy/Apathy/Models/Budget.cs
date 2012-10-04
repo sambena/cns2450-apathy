@@ -12,6 +12,6 @@ namespace Apathy.Models
         public string Owner { get; set; }
 
         public virtual ICollection<Envelope> Envelopes { get; set; }
-        public virtual ICollection<string> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
