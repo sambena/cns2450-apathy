@@ -208,9 +208,25 @@ select {
     color: #444;
 }
 
-input[type="submit"] {
+.button {
     font-size: 1.2em;
+    font-weight: bold;
+    text-align:center;
+    display:block;
     padding: 5px;
+    color:#ffffff;
+    border: 2px solid ridged;
+    border-style:outset;
+    border-radius: 7.5px;
+    background-color:#5c87b2;
+    box-shadow: 1px 1px 8px 0px #ccc;
+}
+.button:hover
+{
+    width:auto;
+    background-color:#4f7792;
+    background-position: -150px 0;
+    box-shadow: 2px 2px 2px 2px #ddd;
 }
 
 /* TABLE
