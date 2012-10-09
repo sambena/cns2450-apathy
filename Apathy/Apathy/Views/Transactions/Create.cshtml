@@ -36,6 +36,7 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Date)
             @Html.ValidationMessageFor(model => model.Date)
+            <div id="DATE"></div>
         </div>
 
         <div class="editor-label">
@@ -63,3 +64,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        alert("Test");
+        $("#DATE").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
