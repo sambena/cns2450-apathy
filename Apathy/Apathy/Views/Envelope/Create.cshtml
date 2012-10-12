@@ -29,13 +29,50 @@
             @Html.EditorFor(model => model.StartingBalance)
             @Html.ValidationMessageFor(model => model.StartingBalance)
         </div>
-
+        
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
+<h2>Current Envelopes</h2>
 
+<div>
+    <table>
+        <tr>
+            <th>
+                Envelope
+            </th>
+            <th>
+                Monthly Budget
+            </th>
+            <th>
+                Current Amount
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in ViewBag.Envelopes)
+        {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    $@item.StartingBalance
+                </td>
+                <td>
+                    $@item.CurrentBalance
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EnvelopeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EnvelopeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

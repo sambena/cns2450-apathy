@@ -56,6 +56,8 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
+            IEnumerable<Envelope> envelopes = envelopeService.GetUserEnvelopes(User.Identity.Name);
+            ViewBag.Envelopes = envelopes;
             return View();
         }
 
