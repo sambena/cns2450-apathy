@@ -9,6 +9,7 @@ namespace Apathy.DAL
     {
         protected override void Seed(BudgetContext context)
         {
+            /*
             var budgets = new List<Budget>
             {
                 new Budget { Owner = "mptolman" },
@@ -39,6 +40,7 @@ namespace Apathy.DAL
             };
             transactions.ForEach(t => context.Transactions.Add(t));
             context.SaveChanges();
+            */
         }
     }
 }

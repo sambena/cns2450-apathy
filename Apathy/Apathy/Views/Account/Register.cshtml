@@ -6,10 +6,10 @@
 
 <h2>Create a New Account</h2>
 <p>
-    Use the form below to create a new account. 
+    <FONT COLOR="#496c8e">Use the form below to create a new account.</FONT> 
 </p>
 <p>
-    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+    <FONT COLOR="#496c8e">Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.</FONT>
 </p>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
@@ -19,7 +19,7 @@
     @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend><FONT COLOR="#496c8e">Account Information</FONT></legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
@@ -54,7 +54,7 @@
             </div>
 
             <p>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Register" class="button" />
             </p>
         </fieldset>
     </div>

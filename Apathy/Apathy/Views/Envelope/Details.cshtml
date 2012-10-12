@@ -1,0 +1,47 @@
+﻿@model Apathy.Models.Envelope
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Envelope</legend>
+
+    <div class="display-label">@Html.LabelFor(model => model.Title)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.StartingBalance)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartingBalance)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.CurrentBalance)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrentBalance)
+    </div>
+
+    <h3>Transactions</h3>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Payee</th>
+        </tr>
+        @foreach (var transaction in Model.Transactions)
+        {
+            <tr>
+                <td>@Html.DisplayFor(item => transaction.Date)</td>
+                <td>@Html.DisplayFor(item => transaction.Amount)</td>
+                <td>@Html.DisplayFor(item => transaction.Payee)</td>
+            </tr>
+        }
+    </table>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EnvelopeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

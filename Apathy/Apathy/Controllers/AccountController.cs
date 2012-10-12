@@ -6,11 +6,13 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Apathy.Models;
+using Apathy.DAL;
 
 namespace Apathy.Controllers
 {
     public class AccountController : Controller
     {
+        private IUserService userService = new UserService(new UnitOfWork());
 
         //
         // GET: /Account/LogOn
@@ -38,7 +40,7 @@ namespace Apathy.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Envelope");
                     }
                 }
                 else
@@ -58,7 +60,7 @@ namespace Apathy.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("LogOn", "Account");
         }
 
         //
@@ -83,8 +85,10 @@ namespace Apathy.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    userService.CreateUser(model.UserName);
+
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Envelope");
                 }
                 else
                 {

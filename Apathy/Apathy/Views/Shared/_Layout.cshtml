@@ -16,14 +16,11 @@
             </div>
             <div id="menucontainer">
                 <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (Request.IsAuthenticated)
                     {
-                    <li>@Html.ActionLink("Envelopes", "Envelope", "Home")</li>
-                    <li>@Html.ActionLink("Transactions", "Transactions", "Home")</li>
+                        <li>@Html.ActionLink("Envelopes", "Index", "Envelope")</li>
+                        <li>@Html.ActionLink("Transactions", "Index", "Transactions")</li>
                     }
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
             </div>
         </div>

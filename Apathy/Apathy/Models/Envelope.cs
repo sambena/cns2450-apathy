@@ -8,17 +8,20 @@ namespace Apathy.Models
         [Key]
         public int EnvelopeID { get; set; }
 
+        [ForeignKey("Budget")]
         public int BudgetID { get; set; }
 
         [MaxLength(30)]
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
+        [Display(Name = "Monthly Balance")]
         [DisplayFormat(DataFormatString = "{0:c}")]
-        [Required(ErrorMessage = "Starting balance is required.")]
+        [Required(ErrorMessage = "Monthly balance is required.")]
         [Column(TypeName = "money")]
         public decimal StartingBalance { get; set; }
 
+        [Display(Name = "Current Balance")]
         [DisplayFormat(DataFormatString = "{0:c}")]
         [Column(TypeName = "money")]
         public decimal CurrentBalance { get; set; }
