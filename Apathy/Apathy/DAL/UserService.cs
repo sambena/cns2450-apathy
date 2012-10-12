@@ -22,8 +22,8 @@ namespace Apathy.DAL
 
         public void CreateUser(string userName)
         {
-            User user = uow.UserRepository.Add(userName);
-            Budget budget = uow.BudgetRepository.Create(userName);
+            uow.UserRepository.Insert(new User { UserName = userName });
+            uow.BudgetRepository.Insert(new Budget { Owner = userName });
             uow.Save();
         }
     }

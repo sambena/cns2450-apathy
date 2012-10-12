@@ -1,0 +1,51 @@
+Team Apathy 
+============= 
+Retrospective – 2 – 10-11-12 
+------------------------------------------------- 
+Previous Iteration Goals  
+* More communication among team members:  There was little improvement with team communication this iteration. We created a Google Group to help encourage communication among team members. We just need to start using it. 
+* Become more familiar with MVC:  Completing the tasks for this iteration helped us to learn how the MVC pattern works. We still have a ways to go, but our knowledge will grow as we work through each iteration. 
+Things you did wrong: 
+* More communication is needed among team members - Matt 
+Things you did right: 
+* Communicated with the user - Jeff 
+* Had a discussion about how to pass data to the Views - Sam 
+* Everyone stayed within the realm of their assigned tasks, and therefore had no merge conflicts - Jeff 
+Goals for next Iteration: 
+* More communication among team members 
+* Start work early--don't procrastinate until the end of the iteration 
+Stories from last iteration: 
+* CSS for registration page: Completed - Branden 
+* CSS for login page: Completed - Jeff 
+* Require authentication: Completed - Tim 
+* Design envelopes tab: Completed - Sam 
+* Develop database abstraction classes: Completed - Matt 
+* Envelope tab controls: Completed - Jordan 
+Stories for this iteration: 
+* Add option to reset budget envelope to its monthly balance: 4 
+* Add "Users" tab: 1 
+* Add support for sharing budgets (database level): 6 
+* Add controls to "Users" tab for adding a user (no functionality): 3 
+* Add date picker for transaction date: 4 
+* CSS for "Users" tab: 5 
+User Interaction: 
+Dede, 
+ 
+We are continuing to work on this application for you. We are close to having some basic screenshots that we can get to you so you can see which direction we are going and to get your feedback. 
+ 
+Currently we are working on adding the capability of adding multiple users. Here is how we plan to implement this feature: 
+ 
+When someone registers and/or logs into the application they will have the ability to add/remove a user and password for that budget. That new user can also add/remove users. 
+ 
+How do you like this approach? Feel free to let us know of any other ideas and specifications you would like us to implement. 
+ 
+Thanks, 
+Team Apathy 
+ 
+ 
+ 
+Team Apathy, 
+ 
+Sounds great!  I'm very excited to see what you have come up with so far!  Thank you!  
+ 
+Dede

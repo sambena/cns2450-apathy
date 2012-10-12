@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace Apathy.Models
 {
@@ -16,6 +17,12 @@ namespace Apathy.Models
                 .Map(t => t.MapLeftKey("BudgetID")
                     .MapRightKey("UserName")
                     .ToTable("BudgetUser"));
+        }
+
+        public void Detach(object entity)
+        {
+            var objectContext = ((IObjectContextAdapter)this).ObjectContext;
+            objectContext.Detach(entity);
         }
     }
 }

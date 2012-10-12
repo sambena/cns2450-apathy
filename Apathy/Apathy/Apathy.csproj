@@ -71,12 +71,12 @@
     <Compile Include="Controllers\EnvelopeController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="DAL\BudgetContext.cs" />
-    <Compile Include="DAL\BudgetRepository.cs" />
-    <Compile Include="DAL\EnvelopeRepository.cs" />
+    <Compile Include="DAL\BudgetService.cs" />
+    <Compile Include="DAL\EnvelopeService.cs" />
+    <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\SampleData.cs" />
-    <Compile Include="DAL\TransactionRepository.cs" />
+    <Compile Include="DAL\TransactionService.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
-    <Compile Include="DAL\UserRepository.cs" />
     <Compile Include="DAL\UserService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
