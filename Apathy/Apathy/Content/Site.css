@@ -345,3 +345,10 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+/* Styles for Login page Register Option
+----------------------------------------------------------*/
+#login_page_register {
+    float: right;
+    padding: 40px;
+}
