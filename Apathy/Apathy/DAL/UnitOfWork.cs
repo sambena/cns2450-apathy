@@ -9,50 +9,50 @@ namespace Apathy.DAL
     {
         private BudgetContext context = new BudgetContext();
 
-        private IBudgetRepository budgetRepository;
-        private IEnvelopeRepository envelopeRepository;
-        private ITransactionRepository transactionRepository;
-        private IUserRepository userRepository;
+        private GenericRepository<Budget> budgetRepository;
+        private GenericRepository<Envelope> envelopeRepository;
+        private GenericRepository<Transaction> transactionRepository;
+        private GenericRepository<User> userRepository;
 
-        public IBudgetRepository BudgetRepository
+        public GenericRepository<Budget> BudgetRepository
         {
             get
             {
                 if (this.budgetRepository == null)
-                    this.budgetRepository = new BudgetRepository(context);
+                    this.budgetRepository = new GenericRepository<Budget>(context);
 
                 return budgetRepository;
             }
         }
 
-        public IEnvelopeRepository EnvelopeRepository
+        public GenericRepository<Envelope> EnvelopeRepository
         {
             get
             {
                 if (this.envelopeRepository == null)
-                    this.envelopeRepository = new EnvelopeRepository(context);
+                    this.envelopeRepository = new GenericRepository<Envelope>(context);
 
                 return envelopeRepository;
             }
         }
 
-        public ITransactionRepository TransactionRepository
+        public GenericRepository<Transaction> TransactionRepository
         {
             get
             {
                 if (this.transactionRepository == null)
-                    this.transactionRepository = new TransactionRepository(context);
+                    this.transactionRepository = new GenericRepository<Transaction>(context);
 
                 return transactionRepository;
             }
         }
 
-        public IUserRepository UserRepository
+        public GenericRepository<User> UserRepository
         {
             get
             {
                 if (this.userRepository == null)
-                    this.userRepository = new UserRepository(context);
+                    this.userRepository = new GenericRepository<User>(context);
 
                 return userRepository;
             }

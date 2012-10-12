@@ -14,17 +14,30 @@ namespace Apathy.Controllers
     [Authorize]
     public class EnvelopeController : Controller
     {
-        private UnitOfWork uow = new UnitOfWork();
+        private EnvelopeService envelopeService;
+        private TransactionService transactionService;
+
+        public EnvelopeController()
+        {
+            UnitOfWork uow = new UnitOfWork();
+            this.envelopeService = new EnvelopeService(uow);
+            this.transactionService = new TransactionService(uow);
+        }
 
         //
         // GET: /Envelope/
 
         public ViewResult Index()
         {
+            var envelopes = envelopeService.GetUserEnvelopes(User.Identity.Name);
+
             EnvelopeIndexViewModel viewModel = new EnvelopeIndexViewModel
             {
-                Envelopes = uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name),
-                RecentTransactions = uow.TransactionRepository.GetRecentTransactions(User.Identity.Name, 14, 5)
+                Envelopes = envelopes,
+                RecentTransactions = envelopes.SelectMany(e => e.Transactions)
+                    .Where(t => t.Date > DateTime.Today.AddDays(-14))
+                    .OrderByDescending(t => t.Date)
+                    .Take(5)
             };
 
             return View(viewModel);
@@ -35,7 +48,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(uow.EnvelopeRepository.GetById(id));
+            return View(envelopeService.GetEnvelopeByID(id));
         }
 
         //
@@ -54,9 +67,7 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                envelope.BudgetID = uow.BudgetRepository.GetByOwner(User.Identity.Name).BudgetID;
-                uow.EnvelopeRepository.Add(envelope);
-                uow.Save();
+                envelopeService.InsertEnvelope(User.Identity.Name, envelope);
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +79,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View(uow.EnvelopeRepository.GetById(id));
+            return View(envelopeService.GetEnvelopeByID(id));
         }
 
         //
@@ -79,8 +90,7 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                uow.EnvelopeRepository.Update(envelope);
-                uow.Save();
+                envelopeService.UpdateEnvelope(envelope);
                 return RedirectToAction("Index");
             }
             return View(envelope);
@@ -91,7 +101,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(uow.EnvelopeRepository.GetById(id));
+            return View(envelopeService.GetEnvelopeByID(id));
         }
 
         //
@@ -100,15 +110,8 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            uow.EnvelopeRepository.Remove(id);
-            uow.Save();
+            envelopeService.DeleteEnvelope(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            uow.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

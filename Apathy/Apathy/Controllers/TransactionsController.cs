@@ -13,14 +13,22 @@ namespace Apathy.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        private UnitOfWork uow = new UnitOfWork();
+        private TransactionService transactionService;
+        private EnvelopeService envelopeService;
+
+        public TransactionsController()
+        {
+            UnitOfWork uow = new UnitOfWork();
+            this.transactionService = new TransactionService(uow);
+            this.envelopeService = new EnvelopeService(uow);
+        }
 
         //
         // GET: /Transactions/
 
         public ViewResult Index()
         {
-            return View(uow.TransactionRepository.GetUserTransactions(User.Identity.Name));
+            return View(transactionService.GetUserTransactions(User.Identity.Name));
         }
 
         //
@@ -28,7 +36,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(uow.TransactionRepository.GetById(id));
+            return View(transactionService.GetTransactionByID(id));
         }
 
         //
@@ -36,7 +44,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
+            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
             return View();
         }
 
@@ -48,12 +56,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                uow.TransactionRepository.Add(transaction);
-                uow.Save();
+                transactionService.InsertTransaction(transaction);
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
         
@@ -62,8 +69,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Transaction transaction = uow.TransactionRepository.GetById(id);
-            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            Transaction transaction = transactionService.GetTransactionByID(id);
+            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -75,12 +82,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                uow.TransactionRepository.Update(transaction);
-                uow.Save();
+                transactionService.UpdateTransaction(transaction);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnvelopeID = new SelectList(uow.EnvelopeRepository.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -89,7 +95,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(uow.TransactionRepository.GetById(id));
+            return View(transactionService.GetTransactionByID(id));
         }
 
         //
@@ -98,15 +104,8 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            uow.TransactionRepository.Remove(id);
-            uow.Save();
+            transactionService.DeleteTransaction(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            uow.Dispose();
-            base.Dispose(disposing);
         }
     }
 }
