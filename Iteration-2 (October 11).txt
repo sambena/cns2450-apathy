@@ -9,6 +9,7 @@ Things you did wrong:
 * More communication is needed among team members - Matt 
 * Similar to above: Team members are not (often) trying to work with each other to collaborate on overlapping goals - Tim
 Things you did right: 
+* The communcation that we did have with each was helpful although it was sparse - Jordan
 * Communicated with the user - Jeff 
 * Had a discussion about how to pass data to the Views - Sam 
 * Everyone stayed within the realm of their assigned tasks, and therefore had no merge conflicts - Jeff 
