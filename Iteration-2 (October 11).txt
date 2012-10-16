@@ -1,12 +1,13 @@
 Team Apathy 
 ============= 
-Retrospective – 2 – 10-11-12 
+Retrospective ï¿½ 2 ï¿½ 10-11-12 
 ------------------------------------------------- 
 Previous Iteration Goals  
 * More communication among team members:  There was little improvement with team communication this iteration. We created a Google Group to help encourage communication among team members. We just need to start using it. 
 * Become more familiar with MVC:  Completing the tasks for this iteration helped us to learn how the MVC pattern works. We still have a ways to go, but our knowledge will grow as we work through each iteration. 
 Things you did wrong: 
 * More communication is needed among team members - Matt 
+* Similar to above: Team members are not (often) trying to work with each other to collaborate on overlapping goals - Tim
 Things you did right: 
 * Communicated with the user - Jeff 
 * Had a discussion about how to pass data to the Views - Sam 
