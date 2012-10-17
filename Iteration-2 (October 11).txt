@@ -25,11 +25,11 @@ Stories from last iteration:
 * Envelope tab controls: Completed - Jordan 
 Stories for this iteration: 
 * Add option to reset budget envelope to its monthly balance: 4 
-* Add "Users" tab: 1 
+* Add "Users" tab: 2 
 * Add support for sharing budgets (database level): 6 
 * Add controls to "Users" tab for adding a user (no functionality): 3 
 * Add date picker for transaction date: 4 
-* CSS for "Users" tab: 5 
+* Android - create login intent (no HTTP communication): 5
 User Interaction: 
 Dede, 
  
