@@ -75,6 +75,7 @@
     <Compile Include="DAL\EnvelopeService.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\SampleData.cs" />
+    <Compile Include="DAL\ServiceContainer.cs" />
     <Compile Include="DAL\TransactionService.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DAL\UserService.cs" />

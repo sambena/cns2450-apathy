@@ -12,7 +12,7 @@ namespace Apathy.Controllers
 {
     public class AccountController : Controller
     {
-        private IUserService userService = new UserService(new UnitOfWork());
+        private ServiceContainer services = new ServiceContainer();
 
         //
         // GET: /Account/LogOn
@@ -85,7 +85,7 @@ namespace Apathy.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    userService.CreateUser(model.UserName);
+                    services.UserService.CreateUser(model.UserName);
 
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Envelope");

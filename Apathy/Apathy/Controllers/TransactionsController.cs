@@ -13,14 +13,11 @@ namespace Apathy.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        private TransactionService transactionService;
-        private EnvelopeService envelopeService;
+        private ServiceContainer services;
 
         public TransactionsController()
         {
-            UnitOfWork uow = new UnitOfWork();
-            this.transactionService = new TransactionService(uow);
-            this.envelopeService = new EnvelopeService(uow);
+            this.services = new ServiceContainer();
         }
 
         //
@@ -28,7 +25,7 @@ namespace Apathy.Controllers
 
         public ViewResult Index()
         {
-            return View(transactionService.GetUserTransactions(User.Identity.Name));
+            return View(services.TransactionService.GetUserTransactions(User.Identity.Name));
         }
 
         //
@@ -36,7 +33,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(transactionService.GetTransactionByID(id));
+            return View(services.TransactionService.GetTransactionByID(id));
         }
 
         //
@@ -44,7 +41,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
+            ViewBag.EnvelopeID = new SelectList(services.EnvelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
             return View();
         }
 
@@ -56,11 +53,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                transactionService.InsertTransaction(transaction);
+                services.TransactionService.InsertTransaction(transaction);
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(services.EnvelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
         
@@ -69,8 +66,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Transaction transaction = transactionService.GetTransactionByID(id);
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            Transaction transaction = services.TransactionService.GetTransactionByID(id);
+            ViewBag.EnvelopeID = new SelectList(services.EnvelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -82,11 +79,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                transactionService.UpdateTransaction(transaction);
+                services.TransactionService.UpdateTransaction(transaction);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(services.EnvelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -95,7 +92,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(transactionService.GetTransactionByID(id));
+            return View(services.TransactionService.GetTransactionByID(id));
         }
 
         //
@@ -104,7 +101,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            transactionService.DeleteTransaction(id);
+            services.TransactionService.DeleteTransaction(id);
             return RedirectToAction("Index");
         }
     }
