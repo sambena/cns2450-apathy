@@ -50,7 +50,7 @@ namespace Apathy.DAL
             } 
         } 
  
-        public virtual TEntity GetByID(object id) 
+        public virtual TEntity GetByPK(object id) 
         { 
             return dbSet.Find(id); 
         } 

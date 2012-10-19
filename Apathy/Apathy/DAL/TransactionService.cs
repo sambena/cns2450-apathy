@@ -1,10 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Apathy.Models;
 
 namespace Apathy.DAL
 {
-    public class TransactionService
+    public interface ITransactionService
+    {
+        Transaction GetTransaction(int transactionID);
+        IEnumerable<Transaction> GetTransactions(string username);
+        IEnumerable<Transaction> GetRecentTransactions(string username);
+        void InsertTransaction(Transaction transaction, string username);
+        void UpdateTransaction(Transaction transaction, string username);
+        void DeleteTransaction(int transactionID);
+        void DeleteTransaction(Transaction transaction);
+    }
+
+    public class TransactionService : ITransactionService
     {
         private UnitOfWork uow;
 
@@ -13,55 +25,79 @@ namespace Apathy.DAL
             this.uow = uow;
         }
 
-        public Transaction GetTransactionByID(int id)
+        public Transaction GetTransaction(int transactionID)
         {
-            return uow.TransactionRepository.GetByID(id);
+            return uow.TransactionRepository.GetByPK(transactionID);
         }
 
-        public void InsertTransaction(Transaction transaction)
+        public IEnumerable<Transaction> GetTransactions(string username)
         {
-            Envelope envelope = uow.EnvelopeRepository.GetByID(transaction.EnvelopeID);
-            envelope.CurrentBalance -= transaction.Amount;
+            var transactions = uow.UserRepository.GetByPK(username)
+                .Budget
+                .Envelopes
+                .SelectMany(e => e.Transactions);
 
+            return transactions.ToList();
+        }
+
+        public IEnumerable<Transaction> GetRecentTransactions(string username)
+        {
+            var recentTransactions = GetTransactions(username)
+                .Where(t => t.TransactionDate > DateTime.Today.AddDays(-14))
+                .Take(5);
+
+            return recentTransactions.ToList();
+        }
+
+        public void InsertTransaction(Transaction transaction, string username)
+        {
+            transaction.UserName    = username;
+            transaction.CreatedDate = DateTime.Now;
+            transaction.Envelope    = uow.EnvelopeRepository.GetByPK(transaction.EnvelopeID);
+
+            ITransactionProcessor processor = TransactionProcessorFactory.CreateProcessor(transaction);
+            processor.Execute();
+            
             uow.TransactionRepository.Insert(transaction);
             uow.Save();
         }
 
-        public void DeleteTransaction(int id)
+        public void UpdateTransaction(Transaction transaction, string username)
         {
-            DeleteTransaction(uow.TransactionRepository.GetByID(id));
-        }
+            ITransactionProcessor processor;
 
-        public void DeleteTransaction(Transaction transaction)
-        {
-            Envelope envelope = uow.EnvelopeRepository.GetByID(transaction.EnvelopeID);
-            envelope.CurrentBalance += transaction.Amount;
+            Transaction transactionBeforeUpdate = uow.TransactionRepository.GetByPK(transaction.TransactionID);
 
-            uow.TransactionRepository.Delete(transaction);
-            uow.Save();
-        }
+            transaction.Amount      = Math.Abs(transaction.Amount);
+            transaction.Envelope    = uow.EnvelopeRepository.GetByPK(transaction.EnvelopeID);
+            transaction.CreatedDate = transactionBeforeUpdate.CreatedDate;
+            transaction.UserName    = username;
 
-        public void UpdateTransaction(Transaction transaction)
-        {
-            Transaction transactionBeforeUpdate = uow.TransactionRepository.GetByID(transaction.TransactionID);
-            Envelope newEnvelope = uow.EnvelopeRepository.GetByID(transaction.EnvelopeID);
+            processor = TransactionProcessorFactory.CreateProcessor(transactionBeforeUpdate);
+            processor.Undo();
 
-            transactionBeforeUpdate.Envelope.CurrentBalance += transactionBeforeUpdate.Amount;
-            newEnvelope.CurrentBalance -= transaction.Amount;
+            processor = TransactionProcessorFactory.CreateProcessor(transaction);
+            processor.Execute();
 
             uow.TransactionRepository.Detach(transactionBeforeUpdate);
             uow.TransactionRepository.Update(transaction);
             uow.Save();
         }
 
-        public IEnumerable<Transaction> GetUserTransactions(string userName)
+        public void DeleteTransaction(int transactionID)
         {
-            var transactions = uow.BudgetRepository.Get(includeProperties: "Envelopes",
-                filter: b => b.Owner.Equals(userName)).Single()
-                .Envelopes
-                .SelectMany(e => e.Transactions);
+            DeleteTransaction(uow.TransactionRepository.GetByPK(transactionID));
+        }
 
-            return transactions.ToList();
+        public void DeleteTransaction(Transaction transaction)
+        {
+            ITransactionProcessor processor;
+
+            processor = TransactionProcessorFactory.CreateProcessor(transaction);
+            processor.Undo();
+
+            uow.TransactionRepository.Delete(transaction);
+            uow.Save();
         }
     }
 }

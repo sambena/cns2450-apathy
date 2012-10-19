@@ -14,27 +14,15 @@ namespace Apathy.Controllers
     [Authorize]
     public class EnvelopeController : Controller
     {
-        private ServiceContainer services;
-
-        public EnvelopeController()
-        {
-            this.services = new ServiceContainer();
-        }
-
         //
         // GET: /Envelope/
 
         public ViewResult Index()
         {
-            var envelopes = services.EnvelopeService.GetUserEnvelopes(User.Identity.Name);
-
             EnvelopeIndexViewModel viewModel = new EnvelopeIndexViewModel
             {
-                Envelopes = envelopes,
-                RecentTransactions = envelopes.SelectMany(e => e.Transactions)
-                    .Where(t => t.Date > DateTime.Today.AddDays(-14))
-                    .OrderByDescending(t => t.Date)
-                    .Take(5)
+                Envelopes = Services.EnvelopeService.GetEnvelopes(User.Identity.Name),
+                RecentTransactions = Services.TransactionService.GetRecentTransactions(User.Identity.Name)
             };
 
             return View(viewModel);
@@ -45,7 +33,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(services.EnvelopeService.GetEnvelopeByID(id));
+            return View(Services.EnvelopeService.GetEnvelope(id));
         }
 
         //
@@ -53,7 +41,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            IEnumerable<Envelope> envelopes = services.EnvelopeService.GetUserEnvelopes(User.Identity.Name);
+            IEnumerable<Envelope> envelopes = Services.EnvelopeService.GetEnvelopes(User.Identity.Name);
             ViewBag.Envelopes = envelopes;
             return View();
         }
@@ -66,7 +54,7 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                services.EnvelopeService.InsertEnvelope(User.Identity.Name, envelope);
+                Services.EnvelopeService.InsertEnvelope(envelope, User.Identity.Name);
                 return RedirectToAction("Index");
             }
 
@@ -78,7 +66,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View(services.EnvelopeService.GetEnvelopeByID(id));
+            return View(Services.EnvelopeService.GetEnvelope(id));
         }
 
         //
@@ -89,7 +77,7 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                services.EnvelopeService.UpdateEnvelope(envelope);
+                Services.EnvelopeService.UpdateEnvelope(envelope);
                 return RedirectToAction("Index");
             }
             return View(envelope);
@@ -100,7 +88,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(services.EnvelopeService.GetEnvelopeByID(id));
+            return View(Services.EnvelopeService.GetEnvelope(id));
         }
 
         //
@@ -109,7 +97,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            services.EnvelopeService.DeleteEnvelope(id);
+            Services.EnvelopeService.DeleteEnvelope(id);
             return RedirectToAction("Index");
         }
     }

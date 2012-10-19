@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace Apathy.Models
@@ -11,6 +9,15 @@ namespace Apathy.Models
         [Key]
         public string UserName { get; set; }
 
-        public virtual ICollection<Budget> Budgets { get; set; }
+        [ForeignKey("Budget")]
+        public Guid BudgetID { get; set; }
+
+        public virtual Budget Budget { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+
+        public User()
+        {
+            this.Transactions = new List<Transaction>();
+        }
     }
 }
