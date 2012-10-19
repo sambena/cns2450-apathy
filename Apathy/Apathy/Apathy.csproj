@@ -75,7 +75,7 @@
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\SampleData.cs" />
     <Compile Include="DAL\Services.cs" />
-    <Compile Include="DAL\TransactionProcessors.cs" />
+    <Compile Include="DAL\TransactionCommands.cs" />
     <Compile Include="DAL\TransactionService.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="DAL\UserService.cs" />

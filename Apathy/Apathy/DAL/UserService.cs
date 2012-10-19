@@ -67,6 +67,8 @@ namespace Apathy.DAL
             {
                 Budget budget;
 
+                // Are we creating a new budget,
+                // or adding a user to an existing budget?
                 if (string.IsNullOrEmpty(owner))
                     budget = new Budget();
                 else

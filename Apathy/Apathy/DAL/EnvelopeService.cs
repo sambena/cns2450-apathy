@@ -53,7 +53,7 @@ namespace Apathy.DAL
         {
             Envelope envelopeBeforeUpdate = uow.EnvelopeRepository.GetByPK(envelope.EnvelopeID);
 
-            envelope.BudgetID = envelopeBeforeUpdate.BudgetID;
+            envelope.BudgetID       = envelopeBeforeUpdate.BudgetID;
             envelope.CurrentBalance = envelopeBeforeUpdate.CurrentBalance;
 
             decimal difference = envelopeBeforeUpdate.StartingBalance - envelope.StartingBalance;

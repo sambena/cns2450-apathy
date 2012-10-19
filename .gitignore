@@ -39,6 +39,7 @@ local.properties
 # Databases
 *.mdf
 *.ldf
+*.sdf
 
 # User-specific files
 *.suo

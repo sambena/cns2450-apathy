@@ -50,13 +50,18 @@ namespace Apathy.DAL
         }
 
         public void InsertTransaction(Transaction transaction, string username)
-        {
+        {            
+            // Use the absolute value of the transaction amount.
+            // If user enters -$10.00 for an expense, then we will assume
+            //   that the user meant to deduct $10.00 from the envelope.            
+            transaction.Amount = Math.Abs(transaction.Amount);
+
+            // Assign values that are not provided by the user
             transaction.UserName    = username;
             transaction.CreatedDate = DateTime.Now;
             transaction.Envelope    = uow.EnvelopeRepository.GetByPK(transaction.EnvelopeID);
 
-            ITransactionProcessor processor = TransactionProcessorFactory.CreateProcessor(transaction);
-            processor.Execute();
+            TransactionCommandFactory.CreateCommand(transaction).Execute();
             
             uow.TransactionRepository.Insert(transaction);
             uow.Save();
@@ -64,20 +69,22 @@ namespace Apathy.DAL
 
         public void UpdateTransaction(Transaction transaction, string username)
         {
-            ITransactionProcessor processor;
-
             Transaction transactionBeforeUpdate = uow.TransactionRepository.GetByPK(transaction.TransactionID);
 
-            transaction.Amount      = Math.Abs(transaction.Amount);
+            transaction.Amount = Math.Abs(transaction.Amount);
+
+            // The transaction object passed to this method
+            //  is not the same transaction object before it was modified,
+            //  so we need to copy values over from the original object
             transaction.Envelope    = uow.EnvelopeRepository.GetByPK(transaction.EnvelopeID);
             transaction.CreatedDate = transactionBeforeUpdate.CreatedDate;
             transaction.UserName    = username;
 
-            processor = TransactionProcessorFactory.CreateProcessor(transactionBeforeUpdate);
-            processor.Undo();
+            // Undo what the transaction did before it was modified
+            TransactionCommandFactory.CreateCommand(transactionBeforeUpdate).Undo();
 
-            processor = TransactionProcessorFactory.CreateProcessor(transaction);
-            processor.Execute();
+            // Re-run the transaction with the new changes
+            TransactionCommandFactory.CreateCommand(transaction).Execute();
 
             uow.TransactionRepository.Detach(transactionBeforeUpdate);
             uow.TransactionRepository.Update(transaction);
@@ -91,10 +98,7 @@ namespace Apathy.DAL
 
         public void DeleteTransaction(Transaction transaction)
         {
-            ITransactionProcessor processor;
-
-            processor = TransactionProcessorFactory.CreateProcessor(transaction);
-            processor.Undo();
+            TransactionCommandFactory.CreateCommand(transaction).Undo();
 
             uow.TransactionRepository.Delete(transaction);
             uow.Save();

@@ -6,33 +6,33 @@ using Apathy.Models;
 
 namespace Apathy.DAL
 {
-    public interface ITransactionProcessor
+    public interface ITransactionCommand
     {
         void Execute();
         void Undo();
     }
 
-    public static class TransactionProcessorFactory
+    public static class TransactionCommandFactory
     {
-        public static ITransactionProcessor CreateProcessor(Transaction transaction)
+        public static ITransactionCommand CreateCommand(Transaction transaction)
         {
             switch (transaction.Type)
             {
                 case TransactionType.Expense:
-                    return new ExpenseProcessor(transaction);
+                    return new ExpenseCommand(transaction);
                 case TransactionType.Deposit:
-                    return new DepositProcessor(transaction);
+                    return new DepositCommand(transaction);
                 default:
                     throw new ArgumentException("Invalid transaction type of " + transaction.Type);
             }
         }
     }
 
-    public class ExpenseProcessor : ITransactionProcessor
+    public class ExpenseCommand : ITransactionCommand
     {
         private Transaction transaction;
 
-        public ExpenseProcessor(Transaction transaction)
+        public ExpenseCommand(Transaction transaction)
         {
             this.transaction = transaction;
         }
@@ -48,11 +48,11 @@ namespace Apathy.DAL
         }
     }
 
-    public class DepositProcessor : ITransactionProcessor
+    public class DepositCommand : ITransactionCommand
     {
         private Transaction transaction;
 
-        public DepositProcessor(Transaction transaction)
+        public DepositCommand(Transaction transaction)
         {
             this.transaction = transaction;
         }
