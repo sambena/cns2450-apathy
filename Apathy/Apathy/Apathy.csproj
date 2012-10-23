@@ -70,6 +70,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EnvelopeController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\BudgetContext.cs" />
     <Compile Include="DAL\EnvelopeService.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
@@ -193,6 +194,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Transactions\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
