@@ -1,53 +1,59 @@
-CS2450 Software Engineering
+Team Apathy 
+============= 
+Retrospective ? 3 ? 10-25-12 
+------------------------------------------------- 
+Previous Iteration Goals 
+* More communication among team members 
+* Start work early--don't procrastinate until the end of the iteration 
 
-Team Assignment: Iteration
+Things you did wrong: 
+Overestimated the ability of some assignments or our own abilities/time-constraints -- Jordan
+Excessively long reporting intervals between team members -- Jeff
+Still a pretty steep learning curve for some of the requirements -- Sam
+	
+Things you did right: 
+Getting feedback from the user and keeping them involved to avoid major overhauls when the user changes their mind -- Tim
+Staying on schedule with our initial roadmap -- Matt
+Continued lack of conflict between contributions -- Branden
 
-Objectives:
+Goals for next Iteration: 
+Better descriptions of expectations on stories
+Change the layout of the page (styling, make it look less templated)
+Next iteration should have larger focus on Android functionality and backend
 
-The purpose of an iteration is to allow you to analyze your progress and refocus your efforts to help you achieve greater success. Below is the items that you should become familiar with through iterations.
+Stories from last iteration: 
+Android login added
+Datepicker for transactions page added
+Reset button for avaialable envelope balance added
+User controller added 
+User tab (view) added
+Adding database support for user tab
+Sharable budgets support
 
-1. What tasks have you completed
-
-2. Have your priorities shifted (e.g. any requirement changes)
-
-3. Has everyone been able to put in equal effort
-
-4. What are some issues or bottlenecks in your way
-
-Iterations also allow for you to use retrospectives to help the team collaboratively grow and morph the process to better suit the team. In retrospectives you will need to share ideas that fall into one of the three categories
-
-1. What we did wrong
-
-2. What we did right
-
-3. What we want to try to do
-
-Assignment Description
-
-This is a reoccurring assignment throughout the rest of the semester. It will occur in two week cycles and will require you to submit a status report for each iteration. During these iterations you will be required to document the below items, after which a file will be uploaded to your teams github repository with your current code changes and iteration items.
-
-* Retrospective items and details
-
-o Write down a list of things your team feels they did wrong or poorly and the name of the person who brought it up
-
-o Write down a list of things your team did right and the name of the person who brought it up
-
-o Write down 2 goals for your team to improve on
-
-* Write how well you completed your improvement items from the previous iteration
-
-o A small paragraph, not just “good”
-
-o For the first iteration this paragraph will be N/A
-
-* List of all the Stories to completed from the previous iteration
-
-o Story completion status (completed, in progress, not started)
-
-o Who was the team member who worked on the story
-
-* List of all the Stories you are attempting to complete by the end of this iteration
-
-o An estimate of the size of each stories
+Stories for this iteration: 
+Default Envelopes for new users -- 4 -- Jeff
+Change UI of the website to look less like a template -- 5 -- Matt
+Paginate transactions list for transaction history -- 5 -- Tim
+Add content to User/Admin tab -- 6 -- Sam
+Establish Android -> Server communication -- 4 -- Branden
+Add a "deposit" transaction -- 3 -- Jordan
 
 * List any communication you have had with your user during the iteration
+
+Dede,
+ 
+Thank you for your quick response to the last email we sent you. We truly appreciate your time and feedback. The reason we are contacting you today is to find out how you want the Categories for the budget. When you create a budget for the first time it can have predetermined categories already listed or it can be a blank slate for you to enter the custom categories you want. Or we can do a combination of this. If you already have an idea in mind please let us know.
+ 
+While we finish up initial aesthetics of the site, do you have a name in mind for the application so we can begin incorporating that name into the design? We look forward to hearing from you.
+ 
+Thanks,
+Team Apathy
+
+------------------------------------------------------------------------------------
+
+Sorry it took me a while to get back to you. I like the idea of maybe having some predetermined categories you could choose from but also adding the option of being able to add your own to for all user needs.
+
+I haven't thought of a name for the application. You guys can feel free to come up with one or if you'd like I'm sure I could come up with something. Just let me know for sure if you'd like me to come up with a name.
+
+Dede
+Sent from my I-Phone...yah my Android...I mean I-Phone...
