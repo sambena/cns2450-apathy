@@ -100,5 +100,23 @@ namespace Apathy.Controllers
             Services.EnvelopeService.DeleteEnvelope(id);
             return RedirectToAction("Index");
         }
+        //
+        // GET: /Envelope/Reset/5
+ 
+        public ActionResult Reset(int id)
+        {
+            return View(Services.EnvelopeService.GetEnvelope(id));
+        }
+
+        //
+        // POST: /Envelope/Reset/5
+
+        [HttpPost, ActionName("Reset")]
+        public ActionResult ResetConfirmed(int id)
+        {
+            Services.EnvelopeService.ResetEnvelope(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }
