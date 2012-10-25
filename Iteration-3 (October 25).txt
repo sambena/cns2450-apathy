@@ -1,0 +1,53 @@
+CS2450 Software Engineering
+
+Team Assignment: Iteration
+
+Objectives:
+
+The purpose of an iteration is to allow you to analyze your progress and refocus your efforts to help you achieve greater success. Below is the items that you should become familiar with through iterations.
+
+1. What tasks have you completed
+
+2. Have your priorities shifted (e.g. any requirement changes)
+
+3. Has everyone been able to put in equal effort
+
+4. What are some issues or bottlenecks in your way
+
+Iterations also allow for you to use retrospectives to help the team collaboratively grow and morph the process to better suit the team. In retrospectives you will need to share ideas that fall into one of the three categories
+
+1. What we did wrong
+
+2. What we did right
+
+3. What we want to try to do
+
+Assignment Description
+
+This is a reoccurring assignment throughout the rest of the semester. It will occur in two week cycles and will require you to submit a status report for each iteration. During these iterations you will be required to document the below items, after which a file will be uploaded to your teams github repository with your current code changes and iteration items.
+
+* Retrospective items and details
+
+o Write down a list of things your team feels they did wrong or poorly and the name of the person who brought it up
+
+o Write down a list of things your team did right and the name of the person who brought it up
+
+o Write down 2 goals for your team to improve on
+
+* Write how well you completed your improvement items from the previous iteration
+
+o A small paragraph, not just “good”
+
+o For the first iteration this paragraph will be N/A
+
+* List of all the Stories to completed from the previous iteration
+
+o Story completion status (completed, in progress, not started)
+
+o Who was the team member who worked on the story
+
+* List of all the Stories you are attempting to complete by the end of this iteration
+
+o An estimate of the size of each stories
+
+* List any communication you have had with your user during the iteration
