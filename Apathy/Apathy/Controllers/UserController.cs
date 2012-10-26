@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Apathy.Models;
+using Apathy.DAL;
 
 namespace Apathy.Controllers
 { 
@@ -18,8 +19,9 @@ namespace Apathy.Controllers
 
         public ViewResult Index()
         {
-            var users = db.Users.Include(u => u.Budget);
-            return View(users.ToList());
+            var users = Services.UserService.GetBudgetUsers(User.Identity.Name);
+
+            return View(users);
         }
 
         //
@@ -36,7 +38,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID");
+            ViewBag.UserID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
             return View();
         } 
 
@@ -48,12 +50,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                Services.UserService.CreateUser(user, User.Identity.Name, );
+                return RedirectToAction("Index");
             }
 
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
+            ViewBag.EnvelopeID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
             return View(user);
         }
         

@@ -10,9 +10,12 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
+    <tr>        
         <th>
             Budget
+        </th>
+        <th>
+            User
         </th>
         <th></th>
     </tr>
@@ -20,12 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Budget.BudgetID)
+            @Html.DisplayFor(modelItem => item.BudgetID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserName }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserName })
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BudgetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BudgetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BudgetID })
         </td>
     </tr>
 }
