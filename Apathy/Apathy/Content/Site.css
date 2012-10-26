@@ -3,13 +3,15 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
-body {
-    background-color: #496c8e;
-    font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-    color: #696969;
+html, body {
+    background-color:#369;
+    font-size:10pt;
+    /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;*/
+    font-family:Arial, Helvetica, Sans-Serif;
+    margin:0;
+    padding:0;
+    height:100%;
+    color:#333;
 }
 
 a:link {
@@ -26,167 +28,83 @@ a:hover {
     text-decoration: none;
 }
 
-a:active {
-    color: #12eb87;
-}
-
-p, ul {
-    margin-bottom: 20px;
-    line-height: 1.6em;
-}
-
-header,
-footer,
-nav,
-section {
-    display: block;
-}
-
-/* HEADINGS   
-----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6 {
-    font-size: 1.5em;
-    color: #496c8e;
-}
-
-h1 {
-    font-size: 2em;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-h2 {
-    padding: 0 0 10px 0;
-}
-
-h3 {
-    font-size: 1.2em;
-}
-
-h4 {
-    font-size: 1.1em;
-}
-
-h5, h6 {
-    font-size: 1em;
-}
-
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-
-/* you can specify a greater or lesser percentage for the 
-page width. Or, you can specify an exact pixel width. */
-.page {
-    width:50%;
-    margin-left: auto;
-    margin-right: auto;
+#page 
+{
+    height:100%;
+    width:700px;
+    background-color:#fff;
+    margin:0 auto;
+    padding:0 20px;
+    border-left:2px solid #036;
+    border-right:2px solid #036;
 }
 
-header, #header {
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
+#header 
+{
+    margin:0;
+    padding:0 0 5px 0;
+    float:left;
+    width:100%;
+    border-bottom:1px solid #e0e0e0;
 }
 
-header h1, #header h1 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
-    text-shadow: 1px 1px 2px #111;
+#header h1
+{    
+    margin:0;
+    padding:0;
+    float:left;
+    font-size:2.2em;
 }
 
 #main 
 {
-    clear:both;
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    border-radius: 4px 0 0 0;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
+    width:100%;
+    padding:0;
+    margin:20px 0 0 0;
 }
 
-footer, 
-#footer {
-    background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
-    border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-}
-
-/* TAB MENU   
+/* NAVIGATION MENU   
 ----------------------------------------------------------*/
-ul#menu {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
-    text-align: right;
+#menucontainer 
+{
+    margin:15px 0 0 25px;
+    padding:0;
+    float:left;
 }
 
-ul#menu li {
-    display: inline;
-    list-style: none;
+ul#menu 
+{
+    list-style-type:none;
+    padding:0;
+    margin:0;
 }
 
-ul#menu li#greeting {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
+ul#menu li 
+{
+    float:left;
+    margin-right:20px;
 }
 
-ul#menu li a {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
+ul#menu li a
+{
+    text-decoration:none;
+    font-size:12pt;
+    color:#999;
+    font-family:Arial, Helvetica, Sans-Serif;
+    font-weight:bold;
 }
 
-ul#menu li a:hover {
-    background-color: #fff;
-    text-decoration: none;
+ul#menu li.active a,
+ul#menu li a:hover
+{
+    color:#333;
 }
 
-ul#menu li a:active {
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-ul#menu li.selected a {
-    background-color: #fff;
-    color: #000;
-}
 
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
-
-fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
-}
-
-legend {
-    font-size: 1.2em;
-    font-weight: bold;
-}
 
 textarea {
     min-height: 75px;
@@ -232,21 +150,27 @@ select {
 /* TABLE
 ----------------------------------------------------------*/
 
-table {
-    border: solid 1px #e8eef4;
-    border-collapse: collapse;
+table 
+{
+    border-collapse:collapse;
+    border-spacing:0;
 }
 
-table td {
+table, th, td 
+{
+    border:1px solid #e8eef4;
+}
+
+table td 
+{
     padding: 5px;
-    border: solid 1px #e8eef4;
 }
 
-table th {
+table th 
+{
     padding: 6px 5px;
     text-align: left;
     background-color: #e8eef4;
-    border: solid 1px #e8eef4;
 }
 
 /* MISC  
@@ -259,66 +183,30 @@ table th {
     color: Red;
 }
 
-nav, 
-#menucontainer {
-    margin-top: 40px;
-    clear:both;
-    float:left;
-}
-
-div#title {
-    display: block;
-    float: left;
-    text-align: left;
-}
-
 #logindisplay {
-    font-size: 1.1em;
-    display: block;
-    text-align: right;
-    margin: 10px;
-    color: White;
+    font-size:1em;    
+    float:right;    
+    margin:5px 0 20px 0;
+    color:#666;
+    width:100%;
+    text-align:right;
 }
 
-.ui-datepicker {	width: 216px;	height: auto;	margin: 5px auto 0;	font: 9pt Arial, sans-serif;
-    background: whitesmoke;	-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);	-moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);	box-shadow: 0px 5px 3px 0px rgba(0, 0, 0, .5);}.ui-datepicker a {	text-decoration: none;}/* DatePicker Table */.ui-datepicker table {	width: 100%;}.ui-datepicker-header {	background: #496c8e;	color: #e0e0e0;	font-weight: bold;
-    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);	-moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);	border-width: 1px 0 0 0;	border-style: solid;	border-color: #111;}.ui-datepicker-title {	text-align: center;}.ui-datepicker-next-hover {
-    color: white;
-    cursor: pointer;
-}.ui-datepicker-prev-hover {
-    color: white;
-    cursor: pointer;
-}.ui-datepicker-next {	float: right;}.ui-datepicker thead {	background: #f5f6f6; 
-    background: -moz-linear-gradient(top, #f5f6f6 0%, #dbdce2 21%, #b8bac6 49%, #dddfe3 80%, #f5f6f6 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f6f6), color-stop(21%,#dbdce2), color-stop(49%,#b8bac6), color-stop(80%,#dddfe3), color-stop(100%,#f5f6f6));
-    background: -webkit-linear-gradient(top, #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%); 
-    background: -o-linear-gradient(top, #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%); 
-    background: -ms-linear-gradient(top, #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%); 
-    background: linear-gradient(to bottom, #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=0 ); 	border-bottom: 3px solid #bbb;}.ui-datepicker th {	text-transform: uppercase;	font-size: 6pt;	padding: 5px 0;	color: #666666;	text-shadow: 1px 0px 0px #fff;	filter: dropshadow(color=#fff, offx=1, offy=0);}.ui-datepicker tbody td {	padding: 0;	border-right: 1px solid #bbb;
-    background-color: white;}.ui-datepicker tbody td:last-child {	border-right: 0px;}.ui-datepicker tbody tr {	border-bottom: 1px solid #bbb;}.ui-datepicker tbody tr:last-child {	border-bottom: 0px;}.ui-datepicker td span, .ui-datepicker td a {	display: inline-block;	font-weight: bold;	text-align: center;	width: 30px;	height: 30px;	line-height: 30px;	color: #666666;	text-shadow: 1px 1px 0px #fff;	filter: dropshadow(color=#fff, offx=1, offy=1);}.ui-datepicker-calendar .ui-state-default {	background: #f5f6f6;
-    background: -moz-linear-gradient(top,  #f5f6f6 0%, #dbdce2 21%, #b8bac6 49%, #dddfe3 80%, #f5f6f6 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f6f6), color-stop(21%,#dbdce2), color-stop(49%,#b8bac6), color-stop(80%,#dddfe3), color-stop(100%,#f5f6f6));
-    background: -webkit-linear-gradient(top,  #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%);
-    background: -o-linear-gradient(top,  #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%);
-    background: -ms-linear-gradient(top,  #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%);
-    background: linear-gradient(to bottom,  #f5f6f6 0%,#dbdce2 21%,#b8bac6 49%,#dddfe3 80%,#f5f6f6 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=0 );
-	-webkit-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);	-moz-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);	box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);}.ui-datepicker-calendar .ui-state-hover {	background: #c6c6c6;}.ui-datepicker-calendar .ui-state-active {	background: #6eafbf;	-webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);	-moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);	box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);	color: #e0e0e0;	text-shadow: 0px 1px 0px #4d7a85;	filter: dropshadow(color=#4d7a85, offx=0, offy=1);	border: 1px solid #55838f;	position: relative;	margin: -1px;}.ui-datepicker-unselectable .ui-state-default {	background: #f4f4f4;	color: #b4b3b3;}.ui-datepicker-calendar td:first-child .ui-state-active {	width: 29px;	margin-left: 0;}.ui-datepicker-calendar td:last-child .ui-state-active {	width: 29px;	margin-right: 0;}.ui-datepicker-calendar tr:last-child .ui-state-active {	height: 29px;	margin-bottom: 0;}
-
-
-#logindisplay a:link {
-    color: white;
+#logindisplay a:link 
+{
+    color:#666;
     text-decoration: underline;
 }
 
-#logindisplay a:visited {
-    color: white;
+#logindisplay a:visited 
+{
+    color:#666;
     text-decoration: underline;
 }
 
-#logindisplay a:hover {
-    color: white;
+#logindisplay a:hover 
+{
+    color:#666;
     text-decoration: none;
 }
 
@@ -352,8 +240,8 @@ div#title {
 .editor-label {
     margin: 1em 0 0 0;
     font: Helvetica;
-    font-size:large;
-    color: #496c8e;
+    font-size:14pt;
+    /*color: #496c8e;*/
 }
 
 .display-field, 

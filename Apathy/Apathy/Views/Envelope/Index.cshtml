@@ -4,25 +4,35 @@
     ViewBag.Title = "Index";
 }
 
+@section Head {
+    <link href="@Url.Content("~/Content/tablesorter/style.css")" type="text/css" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery.tablesorter.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#envelopes-table").tablesorter({
+                headers: {
+                    3: { sorter: false }
+                }
+            });
+        });
+    </script>
+}
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            Envelope
-        </th>
-        <th>
-            Monthly Budget
-        </th>
-        <th>
-            Current Amount
-        </th>
-        <th></th>
-    </tr>
-
+<table id="envelopes-table" class="tablesorter">
+    <thead>
+        <tr>
+            <th class="first">Envelope</th>
+            <th>Monthly Budget</th>
+            <th>Current Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 @foreach (var item in Model.Envelopes)
-{
+{    
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -36,12 +46,12 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.EnvelopeID }) |
             @Html.ActionLink("Details", "Details", new { id = item.EnvelopeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID })
             @Html.ActionLink("Reset", "Reset", new { id = item.EnvelopeID })
         </td>
     </tr>
 }
-
+    </tbody>
 </table>
 
 <h2>Recent Transactions:</h2>
