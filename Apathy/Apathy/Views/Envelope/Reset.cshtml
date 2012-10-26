@@ -1,0 +1,33 @@
+﻿@model Apathy.Models.Envelope
+
+@{
+    ViewBag.Title = "Reset";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to reset this?</h3>
+<fieldset>
+    <legend>Envelope</legend>
+
+    <div class="display-label">@Html.LabelFor(model => model.Title)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.StartingBalance)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartingBalance)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.CurrentBalance)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrentBalance)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Reset" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

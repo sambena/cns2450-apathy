@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Apathy.Models
@@ -9,7 +10,7 @@ namespace Apathy.Models
         public int EnvelopeID { get; set; }
 
         [ForeignKey("Budget")]
-        public int BudgetID { get; set; }
+        public Guid BudgetID { get; set; }
 
         [MaxLength(30)]
         [Required(ErrorMessage = "Title is required.")]
@@ -28,5 +29,10 @@ namespace Apathy.Models
 
         public virtual Budget Budget { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
+
+        public Envelope()
+        {
+            this.Transactions = new List<Transaction>();
+        }
     }
 }

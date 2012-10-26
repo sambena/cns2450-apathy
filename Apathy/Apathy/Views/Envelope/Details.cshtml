@@ -34,7 +34,7 @@
         @foreach (var transaction in Model.Transactions)
         {
             <tr>
-                <td>@Html.DisplayFor(item => transaction.Date)</td>
+                <td>@Html.DisplayFor(item => transaction.TransactionDate)</td>
                 <td>@Html.DisplayFor(item => transaction.Amount)</td>
                 <td>@Html.DisplayFor(item => transaction.Payee)</td>
             </tr>

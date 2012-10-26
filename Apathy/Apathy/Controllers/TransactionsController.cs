@@ -13,22 +13,12 @@ namespace Apathy.Controllers
     [Authorize]
     public class TransactionsController : Controller
     {
-        private TransactionService transactionService;
-        private EnvelopeService envelopeService;
-
-        public TransactionsController()
-        {
-            UnitOfWork uow = new UnitOfWork();
-            this.transactionService = new TransactionService(uow);
-            this.envelopeService = new EnvelopeService(uow);
-        }
-
         //
         // GET: /Transactions/
 
         public ViewResult Index()
         {
-            return View(transactionService.GetUserTransactions(User.Identity.Name));
+            return View(Services.TransactionService.GetTransactions(User.Identity.Name));
         }
 
         //
@@ -36,7 +26,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(transactionService.GetTransactionByID(id));
+            return View(Services.TransactionService.GetTransaction(id));
         }
 
         //
@@ -44,7 +34,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
+            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
             return View();
         }
 
@@ -56,11 +46,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                transactionService.InsertTransaction(transaction);
+                Services.TransactionService.InsertTransaction(transaction, User.Identity.Name);
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
         
@@ -69,8 +59,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Transaction transaction = transactionService.GetTransactionByID(id);
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            Transaction transaction = Services.TransactionService.GetTransaction(id);
+            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -82,11 +72,11 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                transactionService.UpdateTransaction(transaction);
+                Services.TransactionService.UpdateTransaction(transaction, User.Identity.Name);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnvelopeID = new SelectList(envelopeService.GetUserEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
 
@@ -95,7 +85,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(transactionService.GetTransactionByID(id));
+            return View(Services.TransactionService.GetTransaction(id));
         }
 
         //
@@ -104,7 +94,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            transactionService.DeleteTransaction(id);
+            Services.TransactionService.DeleteTransaction(id);
             return RedirectToAction("Index");
         }
     }
