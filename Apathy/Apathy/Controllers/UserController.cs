@@ -46,16 +46,20 @@ namespace Apathy.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(RegisterModel registerModel)
         {
             if (ModelState.IsValid)
             {
-                Services.UserService.CreateUser(user, User.Identity.Name, );
-                return RedirectToAction("Index");
+                string errorDescription;
+                bool success = Services.UserService.CreateUser(registerModel, User.Identity.Name, out errorDescription);
+
+                if (success)
+                    return RedirectToAction("Index");
+                else
+                    ModelState.AddModelError("", errorDescription);
             }
 
-            ViewBag.EnvelopeID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
-            return View(user);
+            return View(registerModel);
         }
         
         //

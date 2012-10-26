@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Apathy.Models;
 
 namespace Apathy.DAL
 {
     public interface IEnvelopeService
     {
-        Envelope GetEnvelope(int envelopeID);
+        Envelope GetEnvelope(int envelopeID, string username);
         IEnumerable<Envelope> GetEnvelopes(string username);
         void InsertEnvelope(Envelope envelope, string username);
         void UpdateEnvelope(Envelope envelope);
         void DeleteEnvelope(Envelope envelope);
-        void DeleteEnvelope(int envelopeID);
-        void ResetEnvelope(int envelopeID);
+        void DeleteEnvelope(int envelopeID, string username);
+        void ResetEnvelope(int envelopeID, string username);
         void ResetEnvelope(Envelope envelope);
         void ResetAllEnvelopes(string username);
     }
@@ -26,9 +28,16 @@ namespace Apathy.DAL
             this.uow = uow;
         }
 
-        public Envelope GetEnvelope(int envelopeID)
+        public Envelope GetEnvelope(int envelopeID, string username)
         {
-            return uow.EnvelopeRepository.GetByPK(envelopeID);
+            Guid budgetID = uow.UserRepository.GetByPK(username).BudgetID;
+            Envelope envelope = uow.EnvelopeRepository.GetByPK(envelopeID);
+
+            // Make sure object exists and user has access
+            if (envelope == null || envelope.BudgetID != budgetID)
+                throw new HttpException(404, "Resource not found");
+
+            return envelope;
         }
 
         public IEnumerable<Envelope> GetEnvelopes(string username)
@@ -70,9 +79,10 @@ namespace Apathy.DAL
             uow.Save();
         }
 
-        public void DeleteEnvelope(int envelopeID)
+        public void DeleteEnvelope(int envelopeID, string username)
         {
-            uow.EnvelopeRepository.Delete(envelopeID);
+            Envelope envelope = GetEnvelope(envelopeID, username);
+            DeleteEnvelope(envelope);
             uow.Save();
         }
 
@@ -88,9 +98,10 @@ namespace Apathy.DAL
             uow.Save();
         }
 
-        public void ResetEnvelope(int envelopeID)
+        public void ResetEnvelope(int envelopeID, string username)
         {
-            ResetEnvelope(uow.EnvelopeRepository.GetByPK(envelopeID));
+            Envelope envelope = GetEnvelope(envelopeID, username);
+            ResetEnvelope(envelope);
         }
 
         public void ResetEnvelope(Envelope envelope)

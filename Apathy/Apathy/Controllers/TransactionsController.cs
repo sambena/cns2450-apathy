@@ -26,7 +26,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(Services.TransactionService.GetTransaction(id));
+            return View(Services.TransactionService.GetTransaction(id, User.Identity.Name));
         }
 
         //
@@ -59,7 +59,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            Transaction transaction = Services.TransactionService.GetTransaction(id);
+            Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
             ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
         }
@@ -85,7 +85,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(Services.TransactionService.GetTransaction(id));
+            return View(Services.TransactionService.GetTransaction(id, User.Identity.Name));
         }
 
         //
@@ -94,7 +94,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Services.TransactionService.DeleteTransaction(id);
+            Services.TransactionService.DeleteTransaction(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
     }
