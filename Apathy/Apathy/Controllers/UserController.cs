@@ -29,8 +29,8 @@ namespace Apathy.Controllers
 
         public ViewResult Details(string id)
         {
-            User user = db.Users.Find(id);
-            return View(user);
+            var test = Services.UserService.GetUser(id);
+            return View(test);
         }
 
         //
@@ -67,7 +67,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(string id)
         {
-            User user = db.Users.Find(id);
+            User user = Services.UserService.GetUser(id);
             ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
             return View(user);
         }

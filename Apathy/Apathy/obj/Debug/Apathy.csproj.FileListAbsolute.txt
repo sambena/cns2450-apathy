@@ -4,13 +4,6 @@ C:\Users\Matt\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.
 C:\Users\Matt\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
 C:\Users\Matt\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
 C:\Users\Matt\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.dll
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.pdb
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.dll
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
-C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
 C:\Users\i63418\Dropbox\School\CS 2450\Apathy\Apathy\bin\Apathy.dll
 C:\Users\i63418\Dropbox\School\CS 2450\Apathy\Apathy\bin\Apathy.pdb
 C:\Users\i63418\Dropbox\School\CS 2450\Apathy\Apathy\bin\EntityFramework.dll
@@ -40,3 +33,10 @@ C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFrame
 C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
 C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
 C:\Users\collo_000\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.dll
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\Apathy.pdb
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.dll
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\bin\EntityFramework.xml
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.csprojResolveAssemblyReference.cache
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.dll
+C:\Users\Sam\Documents\GitHub\cns2450-apathy\Apathy\Apathy\obj\Debug\Apathy.pdb
