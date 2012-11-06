@@ -28,6 +28,10 @@ a:hover {
     text-decoration: none;
 }
 
+.image {
+    border: 0px;   
+}
+
 /* PRIMARY LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 #page 
