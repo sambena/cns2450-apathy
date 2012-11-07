@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using Apathy.Models;
 using Apathy.DAL;
+using PagedList;
 
 namespace Apathy.Controllers
 { 
@@ -16,9 +17,48 @@ namespace Apathy.Controllers
         //
         // GET: /Transactions/
 
-        public ViewResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(Services.TransactionService.GetTransactions(User.Identity.Name));
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+
+            if (Request.HttpMethod == "GET")
+            {
+                searchString = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var transactions = from t in Services.TransactionService.GetTransactions(User.Identity.Name)
+                               select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                transactions = transactions.Where(t => t.Payee.ToUpper().Contains(searchString.ToUpper())
+                    || t.Notes.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Envelope":
+                    transactions = transactions.OrderByDescending(t => t.Envelope);
+                    break;
+                case "Date":
+                    transactions = transactions.OrderBy(t => t.TransactionDate);
+                    break;
+                case "Type":
+                    transactions = transactions.OrderByDescending(t => t.Type);
+                    break;
+                default:
+                    transactions = transactions.OrderBy(t => t.TransactionDate);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+            return View(transactions.ToPagedList(pageNumber, pageSize));
         }
 
         //
