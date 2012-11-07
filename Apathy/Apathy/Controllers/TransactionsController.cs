@@ -34,9 +34,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType))select new { ID = t, Name = t.ToString() };
-            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", "");
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
+            PopulateDropDownLists();
             return View();
         }
 
@@ -52,7 +50,7 @@ namespace Apathy.Controllers
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             return View(transaction);
         }
         
@@ -61,10 +59,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType)) select new { ID = t, Name = t.ToString() };
-            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", "Expense");
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             return View(transaction);
         }
 
@@ -80,7 +76,7 @@ namespace Apathy.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             return View(transaction);
         }
 
@@ -100,6 +96,28 @@ namespace Apathy.Controllers
         {
             Services.TransactionService.DeleteTransaction(id, User.Identity.Name);
             return RedirectToAction("Index");
+        }
+
+        private void PopulateDropDownLists(Transaction transaction = null)
+        {
+            int envelopeID = (transaction != null) ? transaction.EnvelopeID : 0;
+            TransactionType transactionType = (transaction != null) ? transaction.Type : TransactionType.Expense;
+
+            PopulateEnvelopeDropDownList(envelopeID);
+            PopulateTransactionTypeDropDownList(transactionType);
+        }
+
+        private void PopulateEnvelopeDropDownList(int selectedEnvelopeID)
+        {
+            var envelopes = Services.EnvelopeService.GetEnvelopes(User.Identity.Name);
+            ViewBag.EnvelopeID = new SelectList(envelopes, "EnvelopeID", "Title", selectedEnvelopeID);
+        }
+
+        private void PopulateTransactionTypeDropDownList(TransactionType selectedType)
+        {
+            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType))
+                                   select new { ID = t, Name = t.ToString() };
+            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", selectedType);
         }
     }
 }
