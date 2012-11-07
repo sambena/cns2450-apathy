@@ -23,15 +23,18 @@
 </p>
 <table id="transactions-table" class="tablesorter">
     <thead>
-        <tr>        
+        <tr>
+            <th>
+                Date
+            </th>        
             <th>
                 Envelope
             </th>
             <th>
-                Amount
+                Type
             </th>
             <th>
-                Date
+                Amount
             </th>
             <th>
                 Payee
@@ -46,13 +49,16 @@
     @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Envelope.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
+                @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Payee)

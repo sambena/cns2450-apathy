@@ -28,6 +28,13 @@
             @Html.DropDownList("EnvelopeID", String.Empty)
             @Html.ValidationMessageFor(model => model.EnvelopeID)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type, "Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Type")
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Amount)
@@ -57,19 +64,18 @@
             @Html.LabelFor(model => model.Notes)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Notes)
+            @Html.TextBoxFor(model => model.Notes, new { maxlength = "75", style = "width:200px;" })
             @Html.ValidationMessageFor(model => model.Notes)
         </div>
 
         <p>
             <input type="submit" value="Save" />
+            <span style="padding-left: 7px;">
+                @Html.ActionLink("Back", "Index")
+            </span>
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script type="text/javascript">
     $(function () {

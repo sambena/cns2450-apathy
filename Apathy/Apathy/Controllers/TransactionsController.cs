@@ -34,6 +34,8 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
+            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType))select new { ID = t, Name = t.ToString() };
+            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", "");
             ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
             return View();
         }
@@ -59,6 +61,8 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
+            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType)) select new { ID = t, Name = t.ToString() };
+            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", "Expense");
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
             ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
             return View(transaction);
