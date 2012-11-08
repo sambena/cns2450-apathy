@@ -37,8 +37,8 @@ namespace Apathy.Controllers
                                select t;
             if (!String.IsNullOrEmpty(searchString))
             {
-                transactions = transactions.Where(t => t.Payee.ToUpper().Contains(searchString.ToUpper())
-                    || t.Notes.ToUpper().Contains(searchString.ToUpper()));
+                transactions = transactions.Where(t => (t.Notes != null ? t.Payee.ToUpper().Contains(searchString.ToUpper()) : false)
+                    || t.Notes != null ? t.Notes.ToUpper().Contains(searchString.ToUpper()): false);
             }
             switch (sortOrder)
             {
