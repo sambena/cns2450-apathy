@@ -101,6 +101,8 @@ namespace Apathy.Controllers
         {
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
             PopulateDropDownLists(transaction);
+            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType)) select new { ID = t, Name = t.ToString() };
+            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", transaction.Type);
             return View(transaction);
         }
 
