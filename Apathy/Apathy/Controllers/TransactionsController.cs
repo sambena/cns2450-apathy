@@ -37,8 +37,8 @@ namespace Apathy.Controllers
                                select t;
             if (!String.IsNullOrEmpty(searchString))
             {
-                transactions = transactions.Where(t => t.Payee.ToUpper().Contains(searchString.ToUpper())
-                    || t.Notes.ToUpper().Contains(searchString.ToUpper()));
+                transactions = transactions.Where(t => (t.Notes != null ? t.Payee.ToUpper().Contains(searchString.ToUpper()) : false)
+                    || t.Notes != null ? t.Notes.ToUpper().Contains(searchString.ToUpper()): false);
             }
             switch (sortOrder)
             {
@@ -101,8 +101,6 @@ namespace Apathy.Controllers
         {
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
             PopulateDropDownLists(transaction);
-            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType)) select new { ID = t, Name = t.ToString() };
-            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", transaction.Type);
             return View(transaction);
         }
 
