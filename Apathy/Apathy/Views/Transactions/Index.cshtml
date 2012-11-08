@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Apathy.Models.Transaction>
+﻿@model PagedList.IPagedList<Apathy.Models.Transaction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transactions";
+    ViewBag.CurrentFilter = "";
+    ViewBag.CurrentSort = "";
 }
 
 @section Head {
@@ -20,60 +22,109 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find a transaction: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type = "submit" value = "Search"/>
+        </p>
+    }
 </p>
 <table id="transactions-table" class="tablesorter">
     <thead>
         <tr>
             <th>
-                Date
+                @Html.ActionLink("Date", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>        
             <th>
-                Envelope
+                @Html.ActionLink("Envelope", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th>
-                Type
+                @Html.ActionLink("Type", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th>
-                Amount
+                @Html.ActionLink("Amount", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th>
-                Payee
+                @Html.ActionLink("Payee", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th>
-                Notes
+                @Html.ActionLink("Notes", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Envelope.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Payee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Envelope.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Prev
+    }
+     
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+    
+        @using (Html.BeginForm())
+    {
+        <p>
+            <!-- This doesn't actually do anything yet, but it would be nice to allow
+                a user to specify how many transactions per page and generate the page 
+                dynamically based on the selection -->
+            Transactions Per Page: 
+            @Html.ActionLink("25", "Index", Model.PageSize)
+        </p>
+    }
+</div>
 
 

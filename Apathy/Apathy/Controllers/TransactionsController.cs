@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using Apathy.Models;
 using Apathy.DAL;
+using PagedList;
 
 namespace Apathy.Controllers
 { 
@@ -16,9 +17,48 @@ namespace Apathy.Controllers
         //
         // GET: /Transactions/
 
-        public ViewResult Index()
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(Services.TransactionService.GetTransactions(User.Identity.Name));
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+
+            if (Request.HttpMethod == "GET")
+            {
+                searchString = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var transactions = from t in Services.TransactionService.GetTransactions(User.Identity.Name)
+                               select t;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                transactions = transactions.Where(t => t.Payee.ToUpper().Contains(searchString.ToUpper())
+                    || t.Notes.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Envelope":
+                    transactions = transactions.OrderByDescending(t => t.Envelope);
+                    break;
+                case "Date":
+                    transactions = transactions.OrderBy(t => t.TransactionDate);
+                    break;
+                case "Type":
+                    transactions = transactions.OrderByDescending(t => t.Type);
+                    break;
+                default:
+                    transactions = transactions.OrderBy(t => t.TransactionDate);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+            return View(transactions.ToPagedList(pageNumber, pageSize));
         }
 
         //
@@ -34,9 +74,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType))select new { ID = t, Name = t.ToString() };
-            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", "");
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title");
+            PopulateDropDownLists();
             return View();
         }
 
@@ -52,7 +90,7 @@ namespace Apathy.Controllers
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             return View(transaction);
         }
         
@@ -62,7 +100,7 @@ namespace Apathy.Controllers
         public ActionResult Edit(int id)
         {
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType)) select new { ID = t, Name = t.ToString() };
             ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", transaction.Type);
             return View(transaction);
@@ -80,7 +118,7 @@ namespace Apathy.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EnvelopeID = new SelectList(Services.EnvelopeService.GetEnvelopes(User.Identity.Name), "EnvelopeID", "Title", transaction.EnvelopeID);
+            PopulateDropDownLists(transaction);
             return View(transaction);
         }
 
@@ -100,6 +138,28 @@ namespace Apathy.Controllers
         {
             Services.TransactionService.DeleteTransaction(id, User.Identity.Name);
             return RedirectToAction("Index");
+        }
+
+        private void PopulateDropDownLists(Transaction transaction = null)
+        {
+            int envelopeID = (transaction != null) ? transaction.EnvelopeID : 0;
+            TransactionType transactionType = (transaction != null) ? transaction.Type : TransactionType.Expense;
+
+            PopulateEnvelopeDropDownList(envelopeID);
+            PopulateTransactionTypeDropDownList(transactionType);
+        }
+
+        private void PopulateEnvelopeDropDownList(int selectedEnvelopeID)
+        {
+            var envelopes = Services.EnvelopeService.GetEnvelopes(User.Identity.Name);
+            ViewBag.EnvelopeID = new SelectList(envelopes, "EnvelopeID", "Title", selectedEnvelopeID);
+        }
+
+        private void PopulateTransactionTypeDropDownList(TransactionType selectedType)
+        {
+            var transactionTypes = from TransactionType t in Enum.GetValues(typeof(TransactionType))
+                                   select new { ID = t, Name = t.ToString() };
+            ViewBag.Type = new SelectList(transactionTypes, "ID", "Name", selectedType);
         }
     }
 }
