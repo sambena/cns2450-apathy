@@ -10,9 +10,9 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
+    <tr>        
         <th>
-            Budget
+            User
         </th>
         <th></th>
     </tr>
@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Budget.BudgetID)
+            @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |

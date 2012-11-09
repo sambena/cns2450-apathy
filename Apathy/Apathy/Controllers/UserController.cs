@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Apathy.Models;
+using Apathy.DAL;
 
 namespace Apathy.Controllers
 { 
@@ -18,8 +19,9 @@ namespace Apathy.Controllers
 
         public ViewResult Index()
         {
-            var users = db.Users.Include(u => u.Budget);
-            return View(users.ToList());
+            var users = Services.UserService.GetBudgetUsers(User.Identity.Name);
+
+            return View(users);
         }
 
         //
@@ -27,8 +29,8 @@ namespace Apathy.Controllers
 
         public ViewResult Details(string id)
         {
-            User user = db.Users.Find(id);
-            return View(user);
+            var test = Services.UserService.GetUser(id);
+            return View(test);
         }
 
         //
@@ -36,7 +38,7 @@ namespace Apathy.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID");
+            ViewBag.UserID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
             return View();
         } 
 
@@ -44,17 +46,20 @@ namespace Apathy.Controllers
         // POST: /User/Create
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(RegisterModel registerModel)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                string errorDescription;
+                bool success = Services.UserService.CreateUser(registerModel, User.Identity.Name, out errorDescription);
+
+                if (success)
+                    return RedirectToAction("Index");
+                else
+                    ModelState.AddModelError("", errorDescription);
             }
 
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
-            return View(user);
+            return View(registerModel);
         }
         
         //
@@ -62,7 +67,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(string id)
         {
-            User user = db.Users.Find(id);
+            User user = Services.UserService.GetUser(id);
             ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
             return View(user);
         }

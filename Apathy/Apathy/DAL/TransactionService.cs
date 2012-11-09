@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Apathy.Models;
 
 namespace Apathy.DAL
 {
     public interface ITransactionService
     {
-        Transaction GetTransaction(int transactionID);
+        Transaction GetTransaction(int transactionID, string username);
         IEnumerable<Transaction> GetTransactions(string username);
         IEnumerable<Transaction> GetRecentTransactions(string username);
         void InsertTransaction(Transaction transaction, string username);
         void UpdateTransaction(Transaction transaction, string username);
-        void DeleteTransaction(int transactionID);
+        void DeleteTransaction(int transactionID, string username);
         void DeleteTransaction(Transaction transaction);
     }
 
@@ -25,9 +26,16 @@ namespace Apathy.DAL
             this.uow = uow;
         }
 
-        public Transaction GetTransaction(int transactionID)
+        public Transaction GetTransaction(int transactionID, string username)
         {
-            return uow.TransactionRepository.GetByPK(transactionID);
+            Guid budgetID = uow.UserRepository.GetByPK(username).BudgetID;
+            Transaction transaction = uow.TransactionRepository.GetByPK(transactionID);
+
+            // Make sure object exists and user has access
+            if (transaction == null || transaction.Envelope.BudgetID != budgetID)
+                throw new HttpException(404, "Resource not found");
+
+            return transaction;
         }
 
         public IEnumerable<Transaction> GetTransactions(string username)
@@ -91,9 +99,10 @@ namespace Apathy.DAL
             uow.Save();
         }
 
-        public void DeleteTransaction(int transactionID)
+        public void DeleteTransaction(int transactionID, string username)
         {
-            DeleteTransaction(uow.TransactionRepository.GetByPK(transactionID));
+            Transaction transaction = GetTransaction(transactionID, username);
+            DeleteTransaction(transaction);
         }
 
         public void DeleteTransaction(Transaction transaction)

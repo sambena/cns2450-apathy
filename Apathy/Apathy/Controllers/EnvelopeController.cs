@@ -33,7 +33,7 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(Services.EnvelopeService.GetEnvelope(id));
+            return View(Services.EnvelopeService.GetEnvelope(id, User.Identity.Name));
         }
 
         //
@@ -66,7 +66,7 @@ namespace Apathy.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View(Services.EnvelopeService.GetEnvelope(id));
+            return View(Services.EnvelopeService.GetEnvelope(id, User.Identity.Name));
         }
 
         //
@@ -88,7 +88,7 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(Services.EnvelopeService.GetEnvelope(id));
+            return View(Services.EnvelopeService.GetEnvelope(id, User.Identity.Name));
         }
 
         //
@@ -97,7 +97,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Services.EnvelopeService.DeleteEnvelope(id);
+            Services.EnvelopeService.DeleteEnvelope(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
         //
@@ -105,7 +105,7 @@ namespace Apathy.Controllers
  
         public ActionResult Reset(int id)
         {
-            return View(Services.EnvelopeService.GetEnvelope(id));
+            return View(Services.EnvelopeService.GetEnvelope(id, User.Identity.Name));
         }
 
         //
@@ -114,7 +114,7 @@ namespace Apathy.Controllers
         [HttpPost, ActionName("Reset")]
         public ActionResult ResetConfirmed(int id)
         {
-            Services.EnvelopeService.ResetEnvelope(id);
+            Services.EnvelopeService.ResetEnvelope(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,58 @@
+Team Apathy 
+============= 
+Retrospective ? 3 ? 10-25-12 
+------------------------------------------------- 
+Previous Iteration Goals 
+* Better descriptions of expectations on stories: We did a little better with this but still need improvement.
+* Change the layout of the page (styling, make it look less templated): Successful
+* Next iteration should have larger focus on Android functionality and backend: We underestimated the amount of time it would take.
+
+Things you did wrong: 
+- Underestimated how much time certain stories would take -- Jeff
+- Procrastination in completing stories for some individuals -- Jordan
+- Not enough communication with the user -- Matt
+	
+Things you did right: 
+- Improved page layout most importantly the "Register Now" image -- Brandon
+- Gave the user screen shots of the appliation -- Sam
+- Team communication was much better this iteration -- Tim
+
+Goals for next Iteration: 
+- Be more proactive in communicating with the user on requirements.
+- More detail with stories.
+- Learn how to implement REST.
+
+Stories from last iteration: 
+Default Envelopes for new users: Not Completed -- Jeff
+Change UI of the website to look less like a template: Completed -- Matt
+Paginate transactions list for transaction history: Completed -- Tim
+Add content to User/Admin tab: Partially Complete -- Sam
+Establish Android -> Server communication: Partially Complete -- Branden
+Add a "deposit" transaction: Completed -- Jordan
+
+Stories for this iteration: 
+Add content to User/Admin tab: -- 2 -- Sam
+Establish Android -> Server communication (Android Side): -- 8 -- Branden
+Establish Android -> Server communication (Server Side): -- 8 -- Matt
+Add default Envelopes: -- 6 -- Jordan
+Add user to each transaction: -- 4 -- Tim
+Test to find defects and fix or assign defects: -- 5 -- Jeff
+
+* List any communication you have had with your user during the iteration
+
+Dede,
+
+Hope all is well. We wanted to send to you some screen shots of the application to this point. We have made some real progress and we hope you like what we have so far.
+Attahced you will find several screen shots. Please do not hesitate to let us know of anything you do not like or would like to change. We still have the following to implement:
+
+1. The Android app
+2. Functionality to add multiple users
+3. Display the user that created the transaction (Deposit/Expense)
+4. Some additional functionality that the end user will not see
+
+Please let us know if any of your requirements have changed or if we missed something above.
+
+Thank you, 
+Team Apathy
+
+------------------------------------------------------------------------------------
