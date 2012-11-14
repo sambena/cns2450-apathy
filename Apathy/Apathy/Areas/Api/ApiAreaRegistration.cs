@@ -15,6 +15,12 @@ namespace Apathy.Areas.Api
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
+                "Login",
+                "Api/login",
+                new { controller = "Accounts", action = "Login" }
+            );
+
+            context.MapRoute(
                 "Api_default",
                 "Api/{username}/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
