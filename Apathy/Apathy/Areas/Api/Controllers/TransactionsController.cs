@@ -12,17 +12,23 @@ namespace Apathy.Areas.Api.Controllers
     {
         public JsonResult Index(string username)
         {
-            var transactions = from t in Services.TransactionService.GetTransactions(username)
-                               select new { t.TransactionID, t.Type, t.EnvelopeID, t.TransactionDate, t.Amount, t.UserName, t.Payee, t.Notes };
+            IEnumerable<Transaction> transactions = Services.TransactionService.GetTransactions(username);
 
-            return Json(new { success = true, data = transactions }, JsonRequestBehavior.AllowGet);
+            if (transactions == null)
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+            var jsonTransactions = from t in transactions
+                                   select new { t.TransactionID, t.Type, t.EnvelopeID, t.TransactionDate, t.Amount, t.UserName, t.Payee, t.Notes };
+
+            return Json(new { success = true, data = jsonTransactions }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Get(string username, int id)
         {
             Transaction t = Services.TransactionService.GetTransaction(id, username);
+
             if (t == null)
-                return Json(new { success = false });
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
 
             return Json(new { success = true, data = new { t.TransactionID, t.Type, t.EnvelopeID, t.TransactionDate, t.Amount, t.UserName, t.Payee, t.Notes } }, JsonRequestBehavior.AllowGet);
         }
@@ -32,8 +38,7 @@ namespace Apathy.Areas.Api.Controllers
         {
             Services.TransactionService.InsertTransaction(t, username);
 
-            string transactionDate = t.TransactionDate.ToShortDateString();
-            return Json(new { success = true, data = new { t.TransactionID, t.Type, t.EnvelopeID, t.Amount, transactionDate, t.UserName, t.Payee, t.Notes } });
+            return Json(new { success = true, data = new { t.TransactionID, t.Type, t.EnvelopeID, t.Amount, t.TransactionDate, t.UserName, t.Payee, t.Notes } });
         }
 
         [HttpPost]
@@ -41,8 +46,7 @@ namespace Apathy.Areas.Api.Controllers
         {
             Services.TransactionService.UpdateTransaction(t, username);
 
-            string transactionDate = t.TransactionDate.ToShortDateString();
-            return Json(new { success = true, data = new { t.TransactionID, t.Type, t.EnvelopeID, t.Amount, transactionDate, t.UserName, t.Payee, t.Notes } });
+            return Json(new { success = true, data = new { t.TransactionID, t.Type, t.EnvelopeID, t.Amount, t.TransactionDate, t.UserName, t.Payee, t.Notes } });
         }
 
         [HttpPost]

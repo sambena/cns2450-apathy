@@ -35,18 +35,19 @@ namespace Apathy.DAL
 
             // Make sure object exists and user has access
             if (envelope == null || envelope.BudgetID != budgetID)
-                throw new HttpException(404, "Resource not found");
+                return null;
 
             return envelope;
         }
 
         public IEnumerable<Envelope> GetEnvelopes(string username)
         {
-            var envelopes = uow.UserRepository.GetByPK(username)
-                .Budget
-                .Envelopes;
+            User user = uow.UserRepository.GetByPK(username);
 
-            return envelopes;
+            if (user == null)
+                return null;     
+
+            return user.Budget.Envelopes;
         }
 
         public void InsertEnvelope(Envelope envelope, string username)

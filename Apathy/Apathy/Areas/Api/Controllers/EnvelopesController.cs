@@ -12,19 +12,25 @@ namespace Apathy.Areas.Api.Controllers
     {
         public JsonResult Index(string username)
         {
-            var envelopes = from e in Services.EnvelopeService.GetEnvelopes(username)
-                            select new { e.EnvelopeID, e.Title, e.CurrentBalance, e.StartingBalance };
+            var envelopes = Services.EnvelopeService.GetEnvelopes(username);
 
-            return Json(new { success = true, data = envelopes }, JsonRequestBehavior.AllowGet);
+            if (envelopes == null)
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+            var jsonEnvelopes = from e in envelopes
+                                select new { e.EnvelopeID, e.Title, e.CurrentBalance, e.StartingBalance };
+
+            return Json(new { success = true, data = jsonEnvelopes }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Get(string username, int id)
         {
             Envelope envelope = Services.EnvelopeService.GetEnvelope(id, username);
-            if (envelope == null)
-                return Json(new { success = false });
 
-            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.CurrentBalance, envelope.StartingBalance } }, JsonRequestBehavior.AllowGet);
+            if (envelope == null)
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+
+            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.Title, envelope.CurrentBalance, envelope.StartingBalance } }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -32,7 +38,7 @@ namespace Apathy.Areas.Api.Controllers
         {
             Services.EnvelopeService.InsertEnvelope(envelope, username);
 
-            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.CurrentBalance, envelope.StartingBalance } });
+            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.Title, envelope.CurrentBalance, envelope.StartingBalance } });
         }
 
         [HttpPost]
@@ -40,7 +46,7 @@ namespace Apathy.Areas.Api.Controllers
         {
             Services.EnvelopeService.UpdateEnvelope(envelope);
 
-            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.CurrentBalance, envelope.StartingBalance } });
+            return Json(new { success = true, data = new { envelope.EnvelopeID, envelope.Title, envelope.CurrentBalance, envelope.StartingBalance } });
         }
 
         [HttpPost]
