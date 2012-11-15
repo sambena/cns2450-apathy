@@ -23,7 +23,9 @@ namespace Apathy
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Envelope", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Envelope", action = "Index", id = UrlParameter.Optional },
+                null,
+                new string[] { "Apathy.Controllers" }
             );
 
         }

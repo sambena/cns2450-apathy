@@ -23,7 +23,9 @@ namespace Apathy.Areas.Api
             context.MapRoute(
                 "Api_default",
                 "Api/{username}/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                null,
+                new string[] { "Apathy.Areas.Api.Controllers" }
             );
         }
     }

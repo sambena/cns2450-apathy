@@ -73,6 +73,7 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Api\Controllers\EnvelopesController.cs" />
+    <Compile Include="Areas\Api\Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AndroidController.cs" />
     <Compile Include="Controllers\EnvelopeController.cs" />
