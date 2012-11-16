@@ -68,7 +68,7 @@ namespace Apathy.Controllers
         public ActionResult Edit(string id)
         {
             User user = Services.UserService.GetUser(id);
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
+            ViewBag.UserID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
             return View(user);
         }
 
@@ -80,20 +80,21 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                //Services.UserService.UpdateUser(user);
                 return RedirectToAction("Index");
             }
-            ViewBag.BudgetID = new SelectList(db.Budgets, "BudgetID", "BudgetID", user.BudgetID);
             return View(user);
         }
 
         //
         // GET: /User/Delete/5
- 
-        public ActionResult Delete(string id)
+
+        public ActionResult Delete(string username)
         {
-            User user = db.Users.Find(id);
+            User user = Services.UserService.GetUser(username);
+            if (username == null)
+                throw new HttpException(404, "Resource not found");
+
             return View(user);
         }
 
@@ -101,11 +102,9 @@ namespace Apathy.Controllers
         // POST: /User/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(string id)
-        {            
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+        public ActionResult DeleteConfirmed(string username)
+        {
+            Services.UserService.DeleteUser(username);
             return RedirectToAction("Index");
         }
 

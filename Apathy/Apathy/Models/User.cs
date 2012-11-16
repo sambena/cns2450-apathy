@@ -9,6 +9,8 @@ namespace Apathy.Models
         [Key]
         public string UserName { get; set; }
 
+        public string PassWord { get; set; }
+
         [ForeignKey("Budget")]
         public Guid BudgetID { get; set; }
 
