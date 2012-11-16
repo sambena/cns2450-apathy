@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Apathy.Models;
 using Apathy.DAL;
 
@@ -61,14 +62,16 @@ namespace Apathy.Controllers
 
             return View(registerModel);
         }
-        
+
         //
         // GET: /User/Edit/5
- 
+
         public ActionResult Edit(string id)
         {
             User user = Services.UserService.GetUser(id);
-            ViewBag.UserID = new SelectList(Services.UserService.GetBudgetUsers(User.Identity.Name), "UserID", "Title");
+            if (user == null)
+                throw new HttpException(404, "Resource not found");
+
             return View(user);
         }
 
@@ -80,19 +83,19 @@ namespace Apathy.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Services.UserService.UpdateUser(user);
+                Services.UserService.UpdateUser(user);
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(User);
         }
 
         //
         // GET: /User/Delete/5
 
-        public ActionResult Delete(string username)
+        public ActionResult Delete(string id)
         {
-            User user = Services.UserService.GetUser(username);
-            if (username == null)
+            User user = Services.UserService.GetUser(id);
+            if (id == null)
                 throw new HttpException(404, "Resource not found");
 
             return View(user);
@@ -102,9 +105,9 @@ namespace Apathy.Controllers
         // POST: /User/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(string username)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Services.UserService.DeleteUser(username);
+            Services.UserService.DeleteUser(id);
             return RedirectToAction("Index");
         }
 

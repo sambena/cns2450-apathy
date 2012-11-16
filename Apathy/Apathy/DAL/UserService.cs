@@ -12,6 +12,7 @@ namespace Apathy.DAL
         IEnumerable<User> GetBudgetUsers(string username);
         bool CreateUser(RegisterModel model, string owner, out string errorDescription);
         bool DeleteUser(string username);
+        void UpdateUser(User user);
     }
 
     public class UserService : IUserService
@@ -37,6 +38,18 @@ namespace Apathy.DAL
                 .ToList();
 
             return users;
+        }
+
+        public void UpdateUser(User user)
+        {
+            User userBeforeUpdate = uow.UserRepository.GetByPK(user);
+
+            user.UserName = userBeforeUpdate.UserName;
+            user.PassWord = userBeforeUpdate.PassWord;
+
+            uow.UserRepository.Detach(userBeforeUpdate);
+            uow.UserRepository.Update(user);
+            uow.Save();
         }
 
         public bool DeleteUser(string username)
