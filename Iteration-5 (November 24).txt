@@ -9,13 +9,13 @@ Previous Iteration Goals
 
 Things you did wrong: 
 * We waited too long to communicate with the user -- Matt
-* 
-* 
+* Didn't give the user a working prototype to the user -- Sam
 
 Things you did right: 
 * Gave the user screen shots of the application -- Jeff
-* Communicated well with each other -- SOMEONE
-* 
+* Communicated well with each other -- Branden
+* We were proactive on starting out stories -- Jordan
+* Kept the code clean. Didn't have any conflicts -- Tim
 
 
 Goals for next Iteration: 
@@ -31,12 +31,12 @@ Stories from last iteration:
 * Test to find defects and fix or assign defects: In Progress/Completed -- Jeff
 
 Stories for this iteration: 
-* Allow user to change their password: 4 
-* (Android) Add ability to post transactions: 10 
-* Test to find defects and fix or assign defects: 5 
-* Deploy to a live server at the beginning and end of the iteration: 2 
-* 
-* 
+* Allow user to change their password: 4 -- Tim
+* (Android) Add ability to post transactions: 10 -- Branden
+* Test to find defects and fix or assign defects: 5 -- Jordan
+* Test to find defects and fix or assign defects: 5 -- Sam
+* Deploy to a live server at the beginning and end of the iteration: 2 -- Matt
+* Finalize styles: 6 -- Jeff
 
 * List any communication you have had with your user during the iteration
 
