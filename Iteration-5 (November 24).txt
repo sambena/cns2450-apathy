@@ -1,0 +1,64 @@
+Team Apathy 
+============= 
+Retrospective 5 11-24-12 
+------------------------------------------------- 
+Previous Iteration Goals 
+* Be more proactive in communicating with the user on requirements: We sent some screenshots of the application's progress to the user. She seems pleased with what we've done so far. 
+* More detail with stories: We've established clear expectations for the stories
+* Learn how to implement REST: While not a true RESTful implementation, we implemented a way for Android to communicate with the database. 
+
+Things you did wrong: 
+* We waited too long to communicate with the user -- Matt
+* 
+* 
+
+Things you did right: 
+* Gave the user screen shots of the application -- Jeff
+* Communicated well with each other -- SOMEONE
+* 
+
+
+Goals for next Iteration: 
+* Work together to prepare a presentation for the project 
+* Communicate with the user early in the iteration so any last-minute requests can be fulfilled 
+
+Stories from last iteration: 
+* Add content to User/Admin tab: In Progress/Completed -- Sam
+* Establish Android -> Server communication (Android Side): Completed -- Branden
+* Establish Android -> Server communication (Server Side): Completed -- Matt
+* Add default Envelopes: In Progress/Completed -- Jordan
+* Add user to each transaction: In Progress/Completed -- Tim
+* Test to find defects and fix or assign defects: In Progress/Completed -- Jeff
+
+Stories for this iteration: 
+* Allow user to change their password: 4 
+* (Android) Add ability to post transactions: 10 
+* Test to find defects and fix or assign defects: 5 
+* Deploy to a live server at the beginning and end of the iteration: 2 
+* 
+* 
+
+* List any communication you have had with your user during the iteration
+
+Dede,
+
+Hope all is well. We wanted to send to you some screen shots of the application to this point. We have made some real progress and we hope you like what we have so far.
+Attahced you will find several screen shots. Please do not hesitate to let us know of anything you do not like or would like to change. We still have the following to implement:
+
+1. The Android app
+2. Functionality to add multiple users
+3. Display the user that created the transaction (Deposit/Expense)
+4. Some additional functionality that the end user will not see
+
+Please let us know if any of your requirements have changed or if we missed something above.
+
+Thank you, 
+Team Apathy
+
+------------------------------------------------------------------------------------
+
+Team Apathy,
+
+It is looking great guys!  I love it!  Keep up the good work!  
+
+Thanks-Dede
