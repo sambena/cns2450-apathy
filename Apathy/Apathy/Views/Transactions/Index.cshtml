@@ -50,9 +50,12 @@
                 @Html.ActionLink("Payee", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
             <th>
+                @Html.ActionLink("User", "Index", new {sortOrder = ViewBag.NameSortParam})
+            </th>
+            <th>
                 @Html.ActionLink("Notes", "Index", new {sortOrder = ViewBag.NameSortParam})
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -72,6 +75,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Payee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)
