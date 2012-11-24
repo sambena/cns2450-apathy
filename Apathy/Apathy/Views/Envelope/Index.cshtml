@@ -4,13 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-@section Head {
+@section Head 
+{
     <link href="@Url.Content("~/Content/tablesorter/style.css")" type="text/css" rel="stylesheet" />
     <script src="@Url.Content("~/Scripts/jquery.tablesorter.min.js")" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#envelopes-table").tablesorter({
-                headers: {
+                headers: 
+                {
                     3: { sorter: false }
                 }
             });
@@ -46,7 +48,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.EnvelopeID }) |
             @Html.ActionLink("Details", "Details", new { id = item.EnvelopeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnvelopeID }) |
             @Html.ActionLink("Reset", "Reset", new { id = item.EnvelopeID })
         </td>
     </tr>

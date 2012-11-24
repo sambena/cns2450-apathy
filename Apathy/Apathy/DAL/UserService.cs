@@ -83,7 +83,16 @@ namespace Apathy.DAL
                 // Are we creating a new budget,
                 // or adding a user to an existing budget?
                 if (string.IsNullOrEmpty(owner))
+                {
                     budget = new Budget();
+                    //Default Envelopes
+                    budget.Envelopes.Add(new Envelope { Title = "Food", StartingBalance = 150m });
+                    budget.Envelopes.Add(new Envelope { Title = "Rent/Mortgage", StartingBalance = 1200m });
+                    budget.Envelopes.Add(new Envelope { Title = "Gas", StartingBalance = 250m });
+                    budget.Envelopes.Add(new Envelope { Title = "Insurance", StartingBalance = 400m });
+                }
+
+
                 else
                     budget = uow.UserRepository.GetByPK(owner).Budget;
 
