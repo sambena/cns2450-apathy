@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using System.Web.Mvc;
 using Apathy.Models;
 using Apathy.DAL;
@@ -66,7 +67,11 @@ namespace Apathy.Controllers
 
         public ViewResult Details(int id)
         {
-            return View(Services.TransactionService.GetTransaction(id, User.Identity.Name));
+            Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
+            if (transaction == null)
+                throw new HttpException(404, "Resource not found");
+            
+            return View(transaction);
         }
 
         //
@@ -100,6 +105,9 @@ namespace Apathy.Controllers
         public ActionResult Edit(int id)
         {
             Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
+            if (transaction == null)
+                throw new HttpException(404, "Resource not found");
+            
             PopulateDropDownLists(transaction);
             return View(transaction);
         }
@@ -125,7 +133,11 @@ namespace Apathy.Controllers
  
         public ActionResult Delete(int id)
         {
-            return View(Services.TransactionService.GetTransaction(id, User.Identity.Name));
+            Transaction transaction = Services.TransactionService.GetTransaction(id, User.Identity.Name);
+            if (transaction == null)
+                throw new HttpException(404, "Resource not found");
+
+            return View(transaction);
         }
 
         //

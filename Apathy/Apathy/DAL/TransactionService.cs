@@ -33,17 +33,19 @@ namespace Apathy.DAL
 
             // Make sure object exists and user has access
             if (transaction == null || transaction.Envelope.BudgetID != budgetID)
-                throw new HttpException(404, "Resource not found");
+                return null;
 
             return transaction;
         }
 
         public IEnumerable<Transaction> GetTransactions(string username)
         {
-            var transactions = uow.UserRepository.GetByPK(username)
-                .Budget
-                .Envelopes
-                .SelectMany(e => e.Transactions);
+            User user = uow.UserRepository.GetByPK(username);
+
+            if (user == null)
+                return null;
+
+            var transactions = user.Budget.Envelopes.SelectMany(e => e.Transactions);
 
             return transactions.ToList();
         }
