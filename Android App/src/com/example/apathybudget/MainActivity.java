@@ -12,7 +12,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if()
+        if(true)//TODO Fix this
         setContentView(R.layout.activity_main);
     }
 
