@@ -236,9 +236,6 @@
     <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +243,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\ChangePasswordSuccess.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

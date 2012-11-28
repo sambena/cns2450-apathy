@@ -26,15 +26,6 @@ namespace Apathy.Controllers
         }
 
         //
-        // GET: /User/Details/5
-
-        public ViewResult Details(string id)
-        {
-            var test = Services.UserService.GetUser(id);
-            return View(test);
-        }
-
-        //
         // GET: /User/Create
 
         public ActionResult Create()
@@ -61,32 +52,6 @@ namespace Apathy.Controllers
             }
 
             return View(registerModel);
-        }
-
-        //
-        // GET: /User/Edit/5
-
-        public ActionResult Edit(string id)
-        {
-            User user = Services.UserService.GetUser(id);
-            if (user == null)
-                throw new HttpException(404, "Resource not found");
-
-            return View(user);
-        }
-
-        //
-        // POST: /User/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                Services.UserService.UpdateUser(user);
-                return RedirectToAction("Index");
-            }
-            return View(User);
         }
 
         //
