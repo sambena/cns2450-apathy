@@ -11,14 +11,12 @@ namespace Apathy.Areas.Api.Controllers
     public class AccountsController : Controller
     {
         [HttpPost]
-        public JsonResult Login(LogOnModel model)
+        public HttpStatusCodeResult Login(LogOnModel model)
         {
-            bool success = true;
-
             if (!Membership.ValidateUser(model.UserName, model.Password))
-                success = false;
+                return new HttpStatusCodeResult(200);
 
-            return Json(new { success = success });
+            return new HttpStatusCodeResult(401);
         }
     }
 }

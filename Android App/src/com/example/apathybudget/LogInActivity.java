@@ -1,8 +1,10 @@
 package com.example.apathybudget;
 
 
+import model.Login;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +16,7 @@ import android.support.v4.app.NavUtils;
 
 public class LogInActivity extends Activity {
 	
-	EditText etEmailAddress;
+	EditText etName;
 	EditText etPassword;
 	Button btnSubmit;
 
@@ -23,7 +25,7 @@ public class LogInActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         
-		etEmailAddress = (EditText) this.findViewById(R.id.etEmailAddress);
+		etName = (EditText) this.findViewById(R.id.etName);
 		etPassword = (EditText) this.findViewById(R.id.etPassword);
 		btnSubmit = (Button) this.findViewById( R.id.btnSubmit );
 		
@@ -31,9 +33,20 @@ public class LogInActivity extends Activity {
 		{
 			public void onClick(View v)
 			{
-				String emailAddress = etEmailAddress.toString();
+				String name = etName.toString();
 				String password = etPassword.toString();
-//				Toast.makeText( this, resId, duration )
+			
+				if(Login.InitialLogin( name, password))
+				{
+					Toast.makeText( LogInActivity.this, "Login Successful", 3000 );
+					//Goto Page Transactions
+					Intent intent = new Intent(LogInActivity.this, TransactionActivity.class);
+					startActivity(intent);
+				}
+				else
+				{
+					Toast.makeText( LogInActivity.this, "Login failed", 3000 );
+				}
 			}
 		} );
 

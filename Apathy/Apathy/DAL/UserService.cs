@@ -86,15 +86,15 @@ namespace Apathy.DAL
                 {
                     budget = new Budget();
                     //Default Envelopes
-                    budget.Envelopes.Add(new Envelope { Title = "Food", StartingBalance = 150m });
-                    budget.Envelopes.Add(new Envelope { Title = "Rent/Mortgage", StartingBalance = 1200m });
-                    budget.Envelopes.Add(new Envelope { Title = "Gas", StartingBalance = 250m });
-                    budget.Envelopes.Add(new Envelope { Title = "Insurance", StartingBalance = 400m });
+                    budget.Envelopes.Add(new Envelope { Title = "Food", StartingBalance = 150m, CurrentBalance = 150m });
+                    budget.Envelopes.Add(new Envelope { Title = "Rent/Mortgage", StartingBalance = 1200m, CurrentBalance = 1200m });
+                    budget.Envelopes.Add(new Envelope { Title = "Gas", StartingBalance = 250m, CurrentBalance = 250m });
+                    budget.Envelopes.Add(new Envelope { Title = "Insurance", StartingBalance = 400m, CurrentBalance = 400m });
                 }
-
-
                 else
+                {
                     budget = uow.UserRepository.GetByPK(owner).Budget;
+                }
 
                 uow.UserRepository.Insert(new User { UserName = model.UserName, Budget = budget });
                 uow.Save();
